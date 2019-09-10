@@ -199,7 +199,7 @@ const Inventory = () => {
         disableBackdropClick>
         <Fade in={searchModal}>
           <div className={classes.paper}>
-            <SearchModal />
+            <SearchModal onClose={closeSearchModal}/>
           </div>
         </Fade>
       </Modal>

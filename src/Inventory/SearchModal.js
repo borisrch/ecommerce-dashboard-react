@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function Search() {
+export default function Search(props) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     type: '',
@@ -86,6 +86,7 @@ export default function Search() {
         onChange={handleQueryValue}
         margin="normal"
         variant="outlined"
+        autoComplete='off'
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -117,7 +118,7 @@ export default function Search() {
       </TextField>
       
       <Box display="flex" justifyContent="flex-end" style={{marginTop: '2em'}}>
-        <Button vsize="small" color="primary" className={classes.button} style={{marginRight: 10}} >
+        <Button vsize="small" color="primary" className={classes.button} style={{marginRight: 10}} onClick={props.onClose} >
           Cancel
         </Button>
         <Button variant="contained" color="primary" className={classes.button}>
