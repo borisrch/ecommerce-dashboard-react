@@ -17,6 +17,7 @@ import UpdateProduct from './UpdateProduct';
 import UpdateProductStock from './UpdateProductStock';
 import InventoryItem from './InventoryItem';
 import EmptyInventory from './EmptyInventory';
+import SearchModal from './SearchModal';
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -197,9 +198,9 @@ const Inventory = () => {
         closeAfterTransition
         disableBackdropClick>
         <Fade in={searchModal}>
-          <Paper className={classes.paper}>
-            <Typography variant="h4" className={classes.title} gutterBottom>Search Inventory</Typography>
-          </Paper>
+          <div className={classes.paper}>
+            <SearchModal />
+          </div>
         </Fade>
       </Modal>
 
