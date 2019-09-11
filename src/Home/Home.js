@@ -35,10 +35,10 @@ function Home(props) {
         </Grid>
         <Grid item xs={4}>
           <Card
-            title="Customers"
-            button="Manage Customers"
-            description="Search for specific customers by name, email or order ID."
-            route="/orders"
+            title="Board"
+            button="View Board"
+            description="Add, manage, and share information to your team."
+            route="/board"
             image={ process.env.PUBLIC_URL + 'img/customers.png' }
           />
         </Grid>
@@ -53,7 +53,7 @@ function Home(props) {
             title="New Product Listing"
             button="Add New Product"
             description="List a new product to your online store."
-            route="/orders"
+            route="/inventory"
             image={ process.env.PUBLIC_URL + 'img/new-product.png' }
           />
         </Grid>
@@ -62,7 +62,7 @@ function Home(props) {
             title="Product Stock"
             button="Update Stock"
             description="Increase or decrease product availability."
-            route="/orders"
+            route="/inventory"
             image={ process.env.PUBLIC_URL + 'img/product-stock.png' }
           />
         </Grid>
@@ -71,7 +71,7 @@ function Home(props) {
             title="Product Information"
             button="Update Product Information"
             description="Update products name, type, description, etc."
-            route="/orders"
+            route="/inventory"
             image={ process.env.PUBLIC_URL + 'img/product-information.png' }
           />
         </Grid>
@@ -84,7 +84,7 @@ function Home(props) {
             title="User Accounts"
             button="Manage User Accounts"
             description="Create or remove accounts that have access to this dashboard."
-            route="/orders"
+            route="/settings"
             image={ process.env.PUBLIC_URL + 'img/manage-accounts.png' }
           />
         </Grid>
@@ -93,7 +93,7 @@ function Home(props) {
             title="Change Password"
             button="Change Password"
             description="Change the password to your account."
-            route="/orders"
+            route="/settings"
             image={ process.env.PUBLIC_URL + 'img/change-password.png' }
           />
         </Grid>
