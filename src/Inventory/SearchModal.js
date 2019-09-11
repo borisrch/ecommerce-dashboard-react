@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 export default function Search(props) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    type: '',
+    type: 'ID',
   });
 
   const [queryValue, setQueryValue] = React.useState('');
@@ -96,7 +96,7 @@ export default function Search(props) {
         }}
       />
       <TextField
-        id="standard-select-currency"
+        id="standard-select-attribute"
         select
         label="Attribute"
         className={classes.typeField}
