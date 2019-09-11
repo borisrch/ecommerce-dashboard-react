@@ -1,15 +1,18 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
+import ViewModuleIcon from '@material-ui/icons/ViewModule';
+import ViewHeadlineIcon from '@material-ui/icons/ViewHeadline';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import Paper from '@material-ui/core/Paper';
 
 import CreateProduct from './CreateProduct';
 import RemoveProduct from './RemoveProduct';
@@ -53,6 +56,14 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'ApercuMedium',
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(4)
+  },
+  button: {
+    margin: theme.spacing(1)
+  },
+  toolbar: {
+    boxShadow: '0 0 1px 0 rgba(0,0,0,.22)',
+    display: 'inline-block',
+    marginBottom: theme.spacing(3)
   }
 }));
 
@@ -88,10 +99,10 @@ const Inventory = () => {
     setProducts([
       ...products,
       {
-      id: products.length + 1,
-      name: 'Nike Air Max',
-      type: 'Shoes',
-      description: 'These shoes are cool.',
+        id: products.length + 1,
+        name: 'Nike Air Max',
+        type: 'Shoes',
+        description: 'These shoes are cool.',
       },
     ])
   }
@@ -136,6 +147,17 @@ const Inventory = () => {
             <RemoveProduct></RemoveProduct>
           </Grid>
         </Grid>
+
+          <Paper className={classes.toolbar}>
+            <IconButton className={classes.button} color="primary">
+              <ViewModuleIcon />
+            </IconButton>
+            <IconButton className={classes.button}>
+              <ViewHeadlineIcon />
+            </IconButton>
+          </Paper>
+
+
         {
           (products.length === 0 || products.length === null) ? (
             <EmptyInventory />
@@ -199,7 +221,7 @@ const Inventory = () => {
         disableBackdropClick>
         <Fade in={searchModal}>
           <div className={classes.paper}>
-            <SearchModal onClose={closeSearchModal}/>
+            <SearchModal onClose={closeSearchModal} />
           </div>
         </Fade>
       </Modal>
