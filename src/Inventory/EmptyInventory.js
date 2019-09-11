@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '10em'
   },
   emptyContainer: {
-    marginTop: '25vh',
+    marginTop: '15vh',
   }
 }));
 
