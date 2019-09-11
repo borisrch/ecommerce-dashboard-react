@@ -12,6 +12,7 @@ import Orders from './Orders/Orders';
 import Home from './Home/Home';
 import Inventory from './Inventory/Inventory';
 import Settings from './Settings/Settings';
+import Board from './Board/Board';
 
 function page404() {
   return <h1>404!</h1>
@@ -70,7 +71,7 @@ function App() {
               <Tabs value={location.pathname} centered indicatorColor="primary" textColor="primary" >
                 <Tab label="Dashboards" value="/" component={Link} to="/" disableRipple className={classes.tab} />
                 <Tab label="Orders" value="/orders" component={Link} to="/orders" disableRipple className={classes.tab} />
-                <Tab label="Customers" value="/customers" component={Link} to="/customers" disableRipple className={classes.tab} />
+                <Tab label="Board" value="/board" component={Link} to="/board" disableRipple className={classes.tab} />
                 <Tab label="Inventory" value="/inventory" component={Link} to="/inventory" disableRipple className={classes.tab} />
                 <Tab label="Settings" value="/settings" component={Link} to="/settings" disableRipple className={classes.tab} />
               </Tabs>
@@ -79,7 +80,7 @@ function App() {
                 <Route path="/settings" component={ Settings } />
                 <Route path="/inventory/wizard" exact render={() => <div>Inventory Wizard</div>} />
                 <Route path="/inventory"  component={ Inventory } />
-                <Route path="/customers" render={() => <div>Customers</div>} />
+                <Route path="/board" component={ Board } />
                 <Route path="/orders" component={ Orders } />
                 <Route path="/" exact component={ Home }  />
             </Switch>
