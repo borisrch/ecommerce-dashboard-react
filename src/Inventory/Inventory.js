@@ -31,8 +31,10 @@ const useStyles = makeStyles(theme => ({
     bottom: theme.spacing(7),
     right: theme.spacing(7),
   },
-  actions: {
-    marginBottom: theme.spacing(1)
+  action: {
+    marginLeft: 'auto',
+    marginTop: '0.8rem',
+    marginRight: theme.spacing(2)
   },
   modal: {
     display: 'flex',
@@ -63,10 +65,12 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   },
   toolbar: {
-    boxShadow: '0 0 1px 0 rgba(0,0,0,.22)',
+    // boxShadow: '0 0 1px 0 rgba(0,0,0,.22)',
+    boxShadow: '0 0 11px #eaf0f6',
     display: 'inline-block',
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+    width: '100%'
+  },
 }));
 
 const Inventory = () => {
@@ -135,28 +139,21 @@ const Inventory = () => {
     <React.Fragment>
       <Container maxWidth="lg">
         <Typography variant="h4" className={classes.title} gutterBottom>Inventory</Typography>
-        <Grid container spacing={1} className={classes.actions}>
-          <Grid item xs={3}>
-            <CreateProduct createProduct={createNewProduct}></CreateProduct>
-          </Grid>
-          <Grid item xs={3}>
-            <UpdateProduct></UpdateProduct>
-          </Grid>
-          <Grid item xs={3}>
-            <UpdateProductStock></UpdateProductStock>
-          </Grid>
-          <Grid item xs={3}>
-            <RemoveProduct></RemoveProduct>
-          </Grid>
-        </Grid>
-          <Paper className={classes.toolbar}>
-            <IconButton className={classes.button} color="primary">
-              <ViewModuleIcon />
-            </IconButton>
-            <IconButton className={classes.button}>
-              <ViewHeadlineIcon />
-            </IconButton>
-          </Paper>
+        <Paper className={classes.toolbar}>
+          <div style={{display: 'flex'}}>
+            <div>
+              <IconButton className={classes.button} color="primary">
+                <ViewModuleIcon />
+              </IconButton>
+              <IconButton className={classes.button}>
+                <ViewHeadlineIcon />
+              </IconButton>
+            </div>
+            <div className={classes.action}>
+              <CreateProduct createProduct={createNewProduct}></CreateProduct>
+            </div>
+          </div>
+        </Paper>
         {
           (products.length === 0 || products.length === null) ? (
             <EmptyInventory />
