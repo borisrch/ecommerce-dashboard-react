@@ -17,7 +17,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 345,
+    boxShadow: '0 0 1px 0 rgba(0,0,0,.28)',
   },
   media: {
     height: 0,
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500],
+    backgroundColor: red[600],
   },
   rightIcon: {
     marginLeft: theme.spacing(1),
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function RecipeReviewCard() {
+export default function Post(props) {
   const classes = useStyles();
 
   return (
@@ -48,7 +48,7 @@ export default function RecipeReviewCard() {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+            A
           </Avatar>
         }
         action={
@@ -56,13 +56,12 @@ export default function RecipeReviewCard() {
             <ExpandMoreIcon />
           </IconButton>
         }
-        title="Review Fall/Winter product launches"
-        subheader="September 14, 2019"
+        title={props.title}
+        subheader={props.date}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          {props.content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
