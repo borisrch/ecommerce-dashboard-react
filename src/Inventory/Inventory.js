@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(7),
   },
   actions: {
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(1)
   },
   modal: {
     display: 'flex',
@@ -41,9 +41,11 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
+    // boxShadow: theme.shadows[5],
+    boxShadow: '0 20px 60px -2px rgba(27,33,58,.4)',
     padding: theme.spacing(2, 4, 3),
-    outline: 'none'
+    outline: 'none',
+    borderRadius: '8px'
   },
   emptyIcon: {
     color: '#00000032',
@@ -63,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     boxShadow: '0 0 1px 0 rgba(0,0,0,.22)',
     display: 'inline-block',
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(1)
   }
 }));
 
@@ -147,7 +149,6 @@ const Inventory = () => {
             <RemoveProduct></RemoveProduct>
           </Grid>
         </Grid>
-
           <Paper className={classes.toolbar}>
             <IconButton className={classes.button} color="primary">
               <ViewModuleIcon />
@@ -156,8 +157,6 @@ const Inventory = () => {
               <ViewHeadlineIcon />
             </IconButton>
           </Paper>
-
-
         {
           (products.length === 0 || products.length === null) ? (
             <EmptyInventory />
