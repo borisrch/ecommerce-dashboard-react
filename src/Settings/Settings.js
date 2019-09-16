@@ -8,7 +8,8 @@ import SettingTabs from './SettingTabs';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    boxShadow: '0 0 1px 0 rgba(0,0,0,.22)',
+    // boxShadow: '0 0 1px 0 rgba(0,0,0,.22)',
+    boxShadow: '0 0 11px #eaf0f6',
     borderRadius: '4px',
     overflow: 'hidden',
     marginTop: theme.spacing(4),
