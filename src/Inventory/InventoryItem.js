@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   card: {
     minWidth: 275,
-    boxShadow: '0 0 1px 0 rgba(0,0,0,.22)'
+    // boxShadow: '0 0 1px 0 rgba(0,0,0,.22)'
+    boxShadow: '0 0 11px #eaf0f6',
   },
   bullet: {
     display: 'inline-block',
