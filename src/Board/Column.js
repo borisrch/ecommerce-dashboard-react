@@ -11,8 +11,13 @@ import Post from './Post';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    boxShadow: '0 0 1px 0 rgba(0,0,0,.28)',
-    marginBottom: '0.5em'
+    // boxShadow: '0 0 1px 0 rgba(0,0,0,.28)',
+    boxShadow: '0 0 11px #eaf0f6',
+    marginBottom: '0.5rem',
+    '&:hover': {
+      backgroundColor: '#e3f2fd',
+      color: 'white',
+    }
   }
 }));
 

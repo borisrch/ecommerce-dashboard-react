@@ -17,7 +17,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    boxShadow: '0 0 1px 0 rgba(0,0,0,.28)',
+    // boxShadow: '0 0 1px 0 rgba(0,0,0,.28)',
+    boxShadow: '0 0 11px #eaf0f6',
   },
   media: {
     height: 0,
