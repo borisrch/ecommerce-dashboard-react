@@ -6,11 +6,11 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-  emptyIcon: {
-    fontSize: '10em'
+  image: {
+    width: 600
   },
-  emptyContainer: {
-    marginTop: '15vh',
+  bold: {
+    fontFamily: 'ApercuBold',
   }
 }));
 
@@ -20,13 +20,13 @@ export default function EmptyInventory() {
   const classes = useStyles();
 
   return (
-    <Container className={classes.emptyContainer}>
+    <Container>
       <Box display="flex" justifyContent="center">
-        <InboxIcon color="primary" className={classes.emptyIcon} />
+        <img className={classes.image} src={ process.env.PUBLIC_URL + 'img/construction.png' }></img>
       </Box>
       <Container>
-      <Typography variant="h6" align="center" gutterBottom>
-          Inventory is currently empty.
+      <Typography variant="subtitle1" align="center" className={classes.bold} gutterBottom>
+          Inventory is empty.
         </Typography>
         <Typography variant="subtitle1" align="center" gutterBottom>
           Create New Product to add new items to Inventory.
