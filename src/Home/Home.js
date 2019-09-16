@@ -39,7 +39,7 @@ function Home(props) {
             button="View Board"
             description="Add, manage, and share information to your team."
             route="/board"
-            image={ process.env.PUBLIC_URL + 'img/customers.png' }
+            image={ process.env.PUBLIC_URL + 'img/board.png' }
           />
         </Grid>
         <Grid item xs={4}>
