@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import InboxIcon from '@material-ui/icons/Inbox';
 import { Box } from '@material-ui/core';
+import Construction from '../Common/img/construction.png';
 
 const useStyles = makeStyles(theme => ({
   image: {
@@ -22,7 +23,7 @@ export default function EmptyInventory() {
   return (
     <Container>
       <Box display="flex" justifyContent="center">
-        <img className={classes.image} src={ process.env.PUBLIC_URL + 'img/construction.png' }></img>
+        <img className={classes.image} src={ Construction } />
       </Box>
       <Container>
       <Typography variant="subtitle1" align="center" className={classes.bold} gutterBottom>

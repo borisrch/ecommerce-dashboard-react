@@ -5,6 +5,14 @@ import Card from './Card';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import Orders from '../Common/img/orders.png';
+import Board from '../Common/img/board.png';
+import NewProduct from '../Common/img/new-product.png';
+import ChangePassword from '../Common/img/change-password.png';
+import ManageAccounts from '../Common/img/manage-accounts.png';
+import ProductInformation from '../Common/img/product-information.png';
+import ProductStock from '../Common/img/product-stock.png';
+
 const useStyles = makeStyles(theme => ({
   container: {
     marginBottom: '5em'
@@ -30,7 +38,7 @@ function Home(props) {
             button="Manage Orders"
             description="View and update orders. Find orders by email or order ID."
             route="/orders"
-            image={process.env.PUBLIC_URL + 'img/orders.png'}
+            image={Orders}
           />
         </Grid>
         <Grid item xs={4}>
@@ -39,7 +47,7 @@ function Home(props) {
             button="View Board"
             description="Add, manage, and share information to your team."
             route="/board"
-            image={ process.env.PUBLIC_URL + 'img/board.png' }
+            image={ Board }
           />
         </Grid>
         <Grid item xs={4}>
@@ -54,7 +62,7 @@ function Home(props) {
             button="Add New Product"
             description="List a new product to your online store."
             route="/inventory"
-            image={ process.env.PUBLIC_URL + 'img/new-product.png' }
+            image={ NewProduct }
           />
         </Grid>
         <Grid item xs={4}>
@@ -63,7 +71,7 @@ function Home(props) {
             button="Update Stock"
             description="Increase or decrease product availability."
             route="/inventory"
-            image={ process.env.PUBLIC_URL + 'img/product-stock.png' }
+            image={ ProductStock }
           />
         </Grid>
         <Grid item xs={4}>
@@ -72,7 +80,7 @@ function Home(props) {
             button="Update Product Information"
             description="Update products name, type, description, etc."
             route="/inventory"
-            image={ process.env.PUBLIC_URL + 'img/product-information.png' }
+            image={ ProductInformation }
           />
         </Grid>
       </Grid>
@@ -85,7 +93,7 @@ function Home(props) {
             button="Manage User Accounts"
             description="Create or remove accounts that have access to this dashboard."
             route="/settings"
-            image={ process.env.PUBLIC_URL + 'img/manage-accounts.png' }
+            image={ ManageAccounts }
           />
         </Grid>
         <Grid item xs={4}>
@@ -94,7 +102,7 @@ function Home(props) {
             button="Change Password"
             description="Change the password to your account."
             route="/settings"
-            image={ process.env.PUBLIC_URL + 'img/change-password.png' }
+            image={ ChangePassword }
           />
         </Grid>
       </Grid>
