@@ -1,8 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox, Typography, InputAdornment, CircularProgress } from '@material-ui/core';
 import { LockOutlined, PersonOutline } from '@material-ui/icons'
+
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -36,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Login() {
+const Login = withRouter(({ history, ...props }) => {
   const classes = useStyles();
 
   // State indicators
@@ -45,15 +49,21 @@ export default function Login() {
   const [submit, setSubmit] = React.useState(false);
 
   // Values
-  const [usernameValue, setUsernameValue] = React.useState('name@company.com');
+  const [creds, setCreds] = React.useState({
+    username: 'name@company.com',
+    password: '',
+  });
 
   const onSubmit = () => {
     // Some validation logic should go here.
     setSubmit(true);
-    setTimeout(() => {
-      setSubmit(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   setSubmit(false);
+    // }, 2000);
+    // history.push('/dashboard/home');
+    props.userSignInRequest(creds);
   }
+
 
   return (
     <Container maxWidth="sm">
@@ -66,10 +76,7 @@ export default function Login() {
             label="Username"
             type="email"
             variant="outlined"
-            fullWidth
-            autoFocus
-            required
-            value={usernameValue}
+            value={creds.username}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -79,9 +86,12 @@ export default function Login() {
             }}
             onFocus={() => setUsername(true)}
             onBlur={() => setUsername(false)}
-            onChange={(e) => setUsernameValue(e.target.value)}
+            onChange={(e) => setCreds({ ...creds, username: e.target.value })}
             autoComplete="off"
             disabled={submit}
+            fullWidth
+            autoFocus
+            required
           />
           <TextField
             className={classes.password}
@@ -89,8 +99,7 @@ export default function Login() {
             label="Password"
             type="password"
             variant="outlined"
-            fullWidth
-            required
+            value={creds.password}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -100,8 +109,11 @@ export default function Login() {
             }}
             onFocus={() => setPassword(true)}
             onBlur={() => setPassword(false)}
+            onChange={(e) => setCreds({ ...creds, password: e.target.value })}
             autoComplete="off"
             disabled={submit}
+            fullWidth
+            required
           />
           <Grid container alignItems="center" justify="space-between">
             <Grid item>
@@ -124,7 +136,7 @@ export default function Login() {
               onClick={onSubmit}
               disabled={submit}>
               {
-                submit ? <CircularProgress style={{color: '#fff'}} size={24} /> : <Typography>Sign In</Typography>
+                submit ? <CircularProgress style={{ color: '#fff' }} size={24} /> : <Typography>Sign In</Typography>
               }
             </Button>
           </Grid>
@@ -132,4 +144,10 @@ export default function Login() {
       </Paper>
     </Container>
   )
+})
+
+Login.propTypes = {
+  userSignInRequest: PropTypes.func.isRequired
 }
+
+export default Login;
