@@ -8,7 +8,7 @@ import { Grid } from '@material-ui/core';
 
 import LoginCard from './LoginCard';
 import Welcome from '../Common/img/welcome.png';
-import { userSignInRequest } from '../store/signInActions';
+import { userSignInRequest } from '../store/actions/auth';
 
 const useStyles = makeStyles(theme => ({
   image: {
