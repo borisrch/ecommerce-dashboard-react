@@ -1,4 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchProducts } from '../store/actions/products';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
@@ -13,11 +17,9 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import CreateProduct from './CreateProduct';
-import RemoveProduct from './RemoveProduct';
-import UpdateProduct from './UpdateProduct';
-import UpdateProductStock from './UpdateProductStock';
 import InventoryItem from './InventoryItem';
 import EmptyInventory from './EmptyInventory';
 import SearchModal from './SearchModal';
@@ -73,7 +75,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Inventory = () => {
+const Inventory = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -86,31 +88,13 @@ const Inventory = () => {
 
   const [searchModal, setSearchModal] = React.useState(false);
 
-  const [products, setProducts] = React.useState([
-    // {
-    //   id: '1',
-    //   name: 'Nike Air Max',
-    //   type: 'Shoes',
-    //   description: 'These shoes are cool.',
-    // },
-    // {
-    //   id: '2',
-    //   name: 'Grey Jumper',
-    //   type: 'Clothes',
-    //   description: 'This jumper is warm.',
-    // }
-  ]);
+
+  React.useEffect(() => {
+    props.dispatch(fetchProducts());
+  }, []);
 
   const createNewProduct = () => {
-    setProducts([
-      ...products,
-      {
-        id: products.length + 1,
-        name: 'Nike Air Max',
-        type: 'Shoes',
-        description: 'These shoes are cool.',
-      },
-    ])
+    alert('create');
   }
 
   const openSearchModal = () => {
@@ -140,7 +124,7 @@ const Inventory = () => {
       <Container maxWidth="lg">
         <Typography variant="h4" className={classes.title} gutterBottom>Inventory</Typography>
         <Paper className={classes.toolbar}>
-          <div style={{display: 'flex'}}>
+          <div style={{ display: 'flex' }}>
             <div>
               <IconButton className={classes.button} color="primary">
                 <ViewModuleIcon />
@@ -155,12 +139,12 @@ const Inventory = () => {
           </div>
         </Paper>
         {
-          (products.length === 0 || products.length === null) ? (
+          (props.products.length === 0 || props.products.length === null) ? (
             <EmptyInventory />
           ) : (
               <Grid container spacing={2}>
                 {
-                  products.map((product) => (
+                  props.products.map((product) => (
                     <Grid item xs={4} key={product.id}>
                       <InventoryItem item={product} openModal={handleOpen} />
                     </Grid>
@@ -226,4 +210,14 @@ const Inventory = () => {
   );
 }
 
-export default Inventory;
+Inventory.defaultProps = {
+  products: []
+}
+
+function mapStateToProps(state) {
+  return {
+    products: state.product.products
+  }
+}
+
+export default connect(mapStateToProps, null)(Inventory);
