@@ -22,9 +22,7 @@ import Board from './Board/Board';
 import Login from './Login/Login';
 import PrivateRoute from './Common/PrivateRoute';
 
-function page404() {
-  return <h1>404!</h1>
-}
+import './App.css';
 
 const useStyles = makeStyles({
   root: {
@@ -87,6 +85,12 @@ function App(props) {
 
   const { isAuthenticated } = props.auth;
 
+  const RedirectToDashboard = () => (
+    <Fragment>
+      {isAuthenticated ? <Redirect to="/dashboard/home" /> : null}
+    </Fragment>
+  )
+
   const logout = (e) => {
     e.preventDefault();
     props.userSignOutRequest();
@@ -97,6 +101,7 @@ function App(props) {
       <BrowserRouter>
         <div className="App">
           <Route path="/" exact component={Login} />
+          <RedirectToDashboard />
           <Route path="/dashboard" render={({ location }) => (
             <Fragment>
               <Paper className={classes.root}>
