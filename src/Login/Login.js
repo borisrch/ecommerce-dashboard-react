@@ -22,8 +22,8 @@ function Login(props) {
   const { userSignInRequest } = props;
 
   return (
-    <Container style={{ height: '80vh' }}>
-      <Grid container direction="row" justify="center" alignItems="center" style={{ height: '100%' }}>
+    <Container style={{}}>
+      <Grid container direction="row" justify="center" alignItems="center" style={{ height: '100vh' }}>
         <Grid item xs={5}>
           <LoginCard userSignInRequest={userSignInRequest} />
         </Grid>
