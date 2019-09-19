@@ -28,3 +28,12 @@ export function userSignInRequest(userData) {
     }
   }
 }
+
+export function userSignOutRequest() {
+  return dispatch => {
+    localStorage.removeItem('token');
+    // Remove authorization header from future requests.
+    setAuthorizationToken(false);
+    dispatch(setCurrentUser({}));
+  }
+}

@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Switch, Route, Link, BrowserRouter, Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
+import { userSignOutRequest } from './store/actions/auth';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -18,6 +20,7 @@ import Inventory from './Inventory/Inventory';
 import Settings from './Settings/Settings';
 import Board from './Board/Board';
 import Login from './Login/Login';
+import PrivateRoute from './Common/PrivateRoute';
 
 function page404() {
   return <h1>404!</h1>
@@ -79,8 +82,16 @@ const theme = createMuiTheme({
   }
 });
 
-function App() {
+function App(props) {
   const classes = useStyles();
+
+  const { isAuthenticated } = props.auth;
+
+  const logout = (e) => {
+    e.preventDefault();
+    props.userSignOutRequest();
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -103,16 +114,27 @@ function App() {
                 <Route path="/dashboard/inventory" component={Inventory} />
                 <Route path="/dashboard/board" component={Board} />
                 <Route path="/dashboard/orders" component={Orders} />
-                <Route path="/dashboard/home" component={Home} />
+                <PrivateRoute path="/dashboard/home" authed={isAuthenticated} component={Home} />
               </Switch>
             </Fragment>
           )}
           />
-          <Avatar className={classes.avatar} onClick={() => alert('logout modal')}>BC</Avatar>
+          {isAuthenticated ? <Avatar className={classes.avatar} onClick={logout}>BC</Avatar> : null}
         </div>
       </BrowserRouter>
     </ThemeProvider>
   );
 }
 
-export default App;
+App.propTypes = {
+  auth: PropTypes.object.isRequired,
+  userSignOutRequest: PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps, { userSignOutRequest })(App);
