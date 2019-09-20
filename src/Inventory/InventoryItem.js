@@ -5,6 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
   card: {
@@ -20,9 +21,9 @@ const useStyles = makeStyles({
   title: {
     fontSize: 14,
   },
-  pos: {
-    marginBottom: 12,
-  },
+  subtitle: {
+    fontFamily: 'ApercuBold'
+  }
 });
 
 export default function InventoryItem(props) {
@@ -35,22 +36,50 @@ export default function InventoryItem(props) {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Product ID: {props.item.id}
-        </Typography>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h5" component="h2" gutterBottom>
           {props.item.name}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          {props.item.type}
-        </Typography>
+        <Grid container>
+          <Grid item xs={6}>
+            <Typography variant="subtitle1" color="textSecondary" className={classes.subtitle}>
+              Brand
+            </Typography>
+            <Typography variant="body1" color="textSecondary" gutterBottom>
+              {props.item.brand}
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="subtitle1" color="textSecondary" className={classes.subtitle}>
+              ID
+            </Typography>
+            <Typography variant="body1" color="textSecondary" gutterBottom>
+              {props.item.id}
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="subtitle1" color="textSecondary" className={classes.subtitle}>
+              Category
+            </Typography>
+            <Typography variant="body1" color="textSecondary" gutterBottom>
+              {props.item.category}
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="subtitle1" color="textSecondary" className={classes.subtitle}>
+              Stock
+            </Typography>
+            <Typography variant="body1" color="textSecondary" gutterBottom>
+              {Math.floor(Math.random() * 100)}
+            </Typography>
+          </Grid>
+        </Grid>
+
         <Typography variant="body2" component="p">
-          {props.item.description}
           <br />
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={openProductModal}>View Product</Button>
+        <Button size="small" color="primary" onClick={openProductModal}>View Product</Button>
       </CardActions>
     </Card>
   );
