@@ -61,11 +61,6 @@ function MySnackbarContentWrapper(props) {
           {message}
         </span>
       }
-      action={[
-        <IconButton key="close" aria-label="close" color="inherit" onClick={onClose}>
-          <CloseIcon className={classes.icon} />
-        </IconButton>,
-      ]}
       {...other}
     />
   );
@@ -81,6 +76,7 @@ MySnackbarContentWrapper.propTypes = {
 const useStyles2 = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1),
+    boxShadow: 'none'
   },
 }));
 
