@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import ViewHeadlineIcon from '@material-ui/icons/ViewHeadline';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 import Modal from '@material-ui/core/Modal';
@@ -23,6 +24,7 @@ import CreateProduct from './CreateProduct';
 import InventoryItem from './InventoryItem';
 import EmptyInventory from './EmptyInventory';
 import SearchModal from './SearchModal';
+import ProductModal from './ProductModal';
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -73,6 +75,11 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1),
     width: '100%'
   },
+  lastUpdated: {
+    marginTop: theme.spacing(2),
+    padding: 0,
+    color: 'rgb(112, 117, 122)'
+  }
 }));
 
 const Inventory = (props) => {
@@ -88,9 +95,11 @@ const Inventory = (props) => {
 
   const [searchModal, setSearchModal] = React.useState(false);
 
+  const [lastUpdatedTime, setLastUpdatedTime] = React.useState('N/A');
 
   React.useEffect(() => {
     props.dispatch(fetchProducts());
+    setLastUpdatedTime(`${new Date().toLocaleString()}`);
   }, []);
 
   const createNewProduct = () => {
@@ -132,6 +141,9 @@ const Inventory = (props) => {
               <IconButton className={classes.button}>
                 <ViewHeadlineIcon />
               </IconButton>
+              <IconButton className={classes.button}>
+                <RefreshIcon />
+              </IconButton>
             </div>
             <div className={classes.action}>
               <CreateProduct createProduct={createNewProduct}></CreateProduct>
@@ -142,15 +154,20 @@ const Inventory = (props) => {
           (props.products.length === 0 || props.products.length === null) ? (
             <EmptyInventory />
           ) : (
-              <Grid container spacing={2}>
-                {
-                  props.products.map((product) => (
-                    <Grid item xs={4} key={product.id}>
-                      <InventoryItem item={product} openModal={handleOpen} />
-                    </Grid>
-                  ))
-                }
-              </Grid>
+              <React.Fragment>
+                <Grid container spacing={2}>
+                  {
+                    props.products.map((product) => (
+                      <Grid item xs={4} key={product.id}>
+                        <InventoryItem item={product} openModal={handleOpen} />
+                      </Grid>
+                    ))
+                  }
+                </Grid>
+                <Container className={classes.lastUpdated}>
+                  <Typography variant="overline" >Inventory up to date. Last retrieved at {lastUpdatedTime}</Typography>
+                </Container>
+              </React.Fragment>
             )
         }
       </Container>
@@ -180,9 +197,7 @@ const Inventory = (props) => {
         }}>
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2>{product.name}</h2>
-            <p>{product.type}</p>
-            <p>{product.id}</p>
+            <ProductModal item={product} />
           </div>
         </Fade>
       </Modal>
@@ -212,6 +227,10 @@ const Inventory = (props) => {
 
 Inventory.defaultProps = {
   products: []
+}
+
+Inventory.propTypes = {
+  products: PropTypes.array.isRequired
 }
 
 function mapStateToProps(state) {
