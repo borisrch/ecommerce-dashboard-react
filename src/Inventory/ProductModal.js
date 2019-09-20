@@ -55,8 +55,9 @@ export default function Search(props) {
       </Grid>
 
       <Box>
+        <FieldRow label="Name" value={props.item.name} onClick={() => { alert('hi') }} />
         <FieldRow label="Brand" value={props.item.brand} onClick={() => { alert('hi') }} />
-        <FieldRow label="Brand" value={props.item.description} onClick={() => { alert('hi') }} />
+        <FieldRow label="Description" value={props.item.description} onClick={() => { alert('hi') }} />
         <FieldRow label="Category" value={props.item.category} onClick={() => { alert('hi') }} />
         <FieldRow label="ID" value={props.item.id} />
         <FieldRow label="Stock" value={Math.floor(Math.random() * 100)} />
@@ -64,7 +65,7 @@ export default function Search(props) {
 
       <Box display="flex" justifyContent="flex-end" style={{ marginTop: '2em' }}>
         <Button vsize="small" color="primary" className={classes.button} style={{ marginRight: 10 }} onClick={props.onClose}>
-          Cancel
+          Done
         </Button>
       </Box>
 
