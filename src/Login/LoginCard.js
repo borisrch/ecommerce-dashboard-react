@@ -84,7 +84,7 @@ const Login = (props) => {
   const ShowErrorMessage = () => {
     setSubmit(false);
     return (
-      <ErrorMessage variant="error" message={props.responseError.message} />
+      <ErrorMessage variant={props.errorMessage.variant} message={props.errorMessage.message.message} />
     );
   }
 
@@ -157,16 +157,18 @@ const Login = (props) => {
             <Button
               variant="contained"
               color="primary"
-              style={{ boxShadow: "none", width: 100, marginBottom: '2rem' }}
+              style={{ boxShadow: "none", width: 100, marginBottom: '1rem' }}
               onClick={onSubmit}
               disabled={submit}>
               {
                 submit ? <CircularProgress style={{ color: '#fff' }} size={24} /> : <Typography>Sign In</Typography>
               }
             </Button>
-            {
-              props.responseError.message ? <ShowErrorMessage /> : null
-            }
+            <div style={{ width: 352, height: 112 }}>
+              {
+                props.errorMessage.message ? <ShowErrorMessage /> : null
+              }
+            </div>
           </Grid>
         </div>
       </Paper>
@@ -180,7 +182,7 @@ Login.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    responseError: state.auth.error
+    errorMessage: state.auth.error
   }
 }
 
