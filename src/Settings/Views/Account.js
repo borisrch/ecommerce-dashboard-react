@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Edit from '@material-ui/icons/KeyboardArrowRight';
 import Divider from '@material-ui/core/Divider';
 import Loading from './../../Common/Loading';
+import FieldRow from './../../Common/FieldRow';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,7 +50,7 @@ export default function Account() {
   const classes = useStyles();
 
   const [loading, setLoading] = React.useState(true);
-  
+
   setTimeout(() => {
     setLoading(false);
   }, 1000);
@@ -139,11 +140,11 @@ export default function Account() {
 
   return (
     <div className={classes.root}>
-      { loading ? (
+      {loading ? (
         <Loading visible={loading} />
       ) : (
-        <Content />
-      )}
+          <Content />
+        )}
     </div>
   )
 }

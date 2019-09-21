@@ -24,13 +24,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Home(props) {  
+function Home(props) {
   const [count, setCount] = useState(0);
   const classes = useStyles();
 
   return (
     <Container className={classes.container} maxWidth="lg">
-      <Typography variant="h4" className={classes.title} gutterBottom>Dashboards</Typography>
+      <Typography variant="h6" className={classes.title} gutterBottom>Dashboards</Typography>
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <Card
@@ -47,7 +47,7 @@ function Home(props) {
             button="View Board"
             description="Add, manage, and share information to your team."
             route="/board"
-            image={ Board }
+            image={Board}
           />
         </Grid>
         <Grid item xs={4}>
@@ -62,7 +62,7 @@ function Home(props) {
             button="Add New Product"
             description="List a new product to your online store."
             route="/inventory"
-            image={ NewProduct }
+            image={NewProduct}
           />
         </Grid>
         <Grid item xs={4}>
@@ -71,7 +71,7 @@ function Home(props) {
             button="Update Stock"
             description="Increase or decrease product availability."
             route="/inventory"
-            image={ ProductStock }
+            image={ProductStock}
           />
         </Grid>
         <Grid item xs={4}>
@@ -80,7 +80,7 @@ function Home(props) {
             button="Update Product Information"
             description="Update products name, type, description, etc."
             route="/inventory"
-            image={ ProductInformation }
+            image={ProductInformation}
           />
         </Grid>
       </Grid>
@@ -93,7 +93,7 @@ function Home(props) {
             button="Manage User Accounts"
             description="Create or remove accounts that have access to this dashboard."
             route="/settings"
-            image={ ManageAccounts }
+            image={ManageAccounts}
           />
         </Grid>
         <Grid item xs={4}>
@@ -102,7 +102,7 @@ function Home(props) {
             button="Change Password"
             description="Change the password to your account."
             route="/settings"
-            image={ ChangePassword }
+            image={ChangePassword}
           />
         </Grid>
       </Grid>

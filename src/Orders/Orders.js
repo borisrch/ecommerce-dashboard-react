@@ -41,7 +41,7 @@ export default function Orders() {
           <Grid item xs={4}>
           </Grid>
         </Grid>
-        <Typography variant="h4" className={classes.title} gutterBottom>Orders</Typography>
+        <Typography variant="h6" className={classes.title} gutterBottom>Orders</Typography>
         <OrdersTable />
       </Container>
     </React.Fragment>

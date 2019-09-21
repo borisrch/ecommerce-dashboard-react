@@ -20,17 +20,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Settings()  {
+export default function Settings() {
 
   const classes = useStyles();
 
   return (
     <Container maxWidth="lg">
-    <Typography variant="h4" className={classes.title} gutterBottom>Account Settings</Typography>
-    <Typography variant="subtitle1">Change your profile and account settings.</Typography>
-    <Paper className={classes.paper}>
-      <SettingTabs />
-    </Paper>
+      <Typography variant="h6" className={classes.title} gutterBottom>Account Settings</Typography>
+      <Typography variant="subtitle1">Change your profile and account settings.</Typography>
+      <Paper className={classes.paper}>
+        <SettingTabs />
+      </Paper>
     </Container>
   )
 }

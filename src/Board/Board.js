@@ -18,8 +18,8 @@ export default function Board() {
 
   return (
     <Container>
-      <Typography variant="h4" className={classes.title}>Board</Typography>
-      
+      <Typography variant="h6" className={classes.title}>Board</Typography>
+
       <Grid container spacing={3}>
         <Grid item xs={4}>
           <Column name="Meetings"></Column>

@@ -131,7 +131,7 @@ const Inventory = (props) => {
   return (
     <React.Fragment>
       <Container maxWidth="lg">
-        <Typography variant="h4" className={classes.title} gutterBottom>Inventory</Typography>
+        <Typography variant="h6" className={classes.title} gutterBottom>Inventory</Typography>
         <Paper className={classes.toolbar}>
           <div style={{ display: 'flex' }}>
             <div>
