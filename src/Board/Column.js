@@ -41,14 +41,14 @@ export default function Board(props) {
 
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom style={{fontFamily: 'ApercuMedium'}}>{props.name}</Typography>
+      <Typography variant="h5" gutterBottom style={{ fontFamily: 'ApercuMedium' }}>{props.name}</Typography>
       <Paper className={classes.paper}>
-        <Button fullWidth={true}  color="primary">
+        <Button fullWidth={true} color="primary">
           <Add />
         </Button>
       </Paper>
       <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">
-        { posts.map((post) => (
+        {posts.map((post) => (
           <Grid item xs={12} key={post.id}>
             <Post title={post.title} content={post.content} date={post.date} />
           </Grid>
