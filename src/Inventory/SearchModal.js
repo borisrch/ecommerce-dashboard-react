@@ -90,7 +90,7 @@ export default function Search(props) {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon edge="start"/>
+              <SearchIcon edge="start" style={{ color: "#757575" }} />
             </InputAdornment>
           ),
         }}
@@ -116,9 +116,9 @@ export default function Search(props) {
           </MenuItem>
         ))}
       </TextField>
-      
-      <Box display="flex" justifyContent="flex-end" style={{marginTop: '2em'}}>
-        <Button vsize="small" color="primary" className={classes.button} style={{marginRight: 10}} onClick={props.onClose} >
+
+      <Box display="flex" justifyContent="flex-end" style={{ marginTop: '2em' }}>
+        <Button vsize="small" color="primary" className={classes.button} style={{ marginRight: 10 }} onClick={props.onClose} >
           Cancel
         </Button>
         <Button variant="contained" color="primary" className={classes.button}>
