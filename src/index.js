@@ -4,9 +4,10 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './store/reducers/rootReducer';
-import setAuthorizationToken from './utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 import { setCurrentUser } from './store/actions/auth';
+import setAuthorizationToken from './utils/setAuthorizationToken';
+import getTokenTimeRemaining from './utils/getTokenTimeRemaining';
 
 import './index.css';
 import App from './App';
@@ -20,9 +21,15 @@ const store = createStore(
 
 // Authorizes if user token is valid on page.
 if (localStorage.token) {
-  setAuthorizationToken(localStorage.token);
-  store.dispatch(setCurrentUser(jwtDecode(localStorage.token)));
-  console.log('user exists');
+
+  const decodedToken = jwtDecode(localStorage.token);
+  if (decodedToken.exp < new Date().getTime() / 1000) {
+    console.log("EXPIRED");
+  } else {
+    setAuthorizationToken(localStorage.token);
+    store.dispatch(setCurrentUser(decodedToken));
+    getTokenTimeRemaining(decodedToken);
+  }
 }
 
 ReactDOM.render(
