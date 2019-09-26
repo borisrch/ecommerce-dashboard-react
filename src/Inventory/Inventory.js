@@ -25,6 +25,7 @@ import InventoryItem from './InventoryItem';
 import EmptyInventory from './EmptyInventory';
 import SearchModal from './SearchModal';
 import ProductModal from './ProductModal';
+import CreateProductForm from './CreateProductForm';
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -190,14 +191,15 @@ const Inventory = (props) => {
         className={classes.modal}
         open={open}
         onClose={handleClose}
-        closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
-        }}>
+        }}
+        closeAfterTransition
+        disableBackdropClick>
         <Fade in={open}>
           <div className={classes.paper}>
-            <ProductModal item={product} />
+            <ProductModal item={product} setProduct={setProduct} />
           </div>
         </Fade>
       </Modal>
@@ -220,6 +222,8 @@ const Inventory = (props) => {
           </div>
         </Fade>
       </Modal>
+
+      <CreateProductForm />
 
     </React.Fragment>
   );
