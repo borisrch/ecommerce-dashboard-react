@@ -26,17 +26,25 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(1),
   },
   icon: {
-    alignContent: 'flex-end',
-    textAlign: 'right'
+    color: '#5f6368',
   }
 }));
 
 const FieldRow = (props) => {
   const classes = useStyles();
 
+  const handleClick = () => {
+    if (props.openModal) {
+      props.openModal({
+        label: props.label,
+        value: props.value
+      });
+    }
+  }
+
   return (
-    <div className={clsx([classes.row, (props.onClick && classes.hover)])}>
-      <Grid container onClick={props.onClick}>
+    <div className={clsx([classes.row, (props.openModal && classes.hover)])}>
+      <Grid container onClick={handleClick}>
         <Grid item xs={3}>
           <Typography variant="overline" className={classes.label} gutterBottom>
             {props.label}
@@ -49,7 +57,7 @@ const FieldRow = (props) => {
         </Grid>
         <Grid item xs={1}>
           <Box display="flex" justifyContent="center">
-            {props.onClick ? <Edit /> : null}
+            {props.openModal ? <Edit className={classes.icon} /> : null}
           </Box>
         </Grid>
       </Grid>
