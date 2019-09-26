@@ -33,6 +33,11 @@ export default function InventoryItem(props) {
     props.openModal(props.item);
   }
 
+  const closeProductModal = () => {
+    console.log('closing modal');
+    props.closeModal();
+  }
+
   return (
     <Card className={classes.card}>
       <CardContent>
