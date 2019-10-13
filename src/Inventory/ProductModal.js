@@ -107,6 +107,7 @@ export default function ProductModal(props) {
         <Button variant="contained" color="primary" className={classes.button} style={{ marginRight: 10 }} onClick={props.onClose}>
           Save
         </Button>
+        <Button color="primary">Cancel</Button>
       </Box>
 
       <Modal
