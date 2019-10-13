@@ -27,7 +27,6 @@ export default function Settings() {
   return (
     <Container maxWidth="lg">
       <Typography variant="h6" className={classes.title} gutterBottom>Account Settings</Typography>
-      <Typography variant="subtitle1">Change your profile and account settings.</Typography>
       <Paper className={classes.paper}>
         <SettingTabs />
       </Paper>
