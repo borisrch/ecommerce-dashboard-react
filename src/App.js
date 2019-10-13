@@ -13,6 +13,12 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import blue from "@material-ui/core/colors/blue";
 import green from "@material-ui/core/colors/green";
 import Avatar from '@material-ui/core/Avatar';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 
 import Orders from './Orders/Orders';
 import Home from './Home/Home';
@@ -44,7 +50,28 @@ const useStyles = makeStyles({
     '&:hover': {
       cursor: 'pointer'
     },
-  }
+  },
+  paper: {
+    backgroundColor: '#fff',
+    // boxShadow: theme.shadows[5],
+    boxShadow: '0 20px 60px -2px rgba(27,33,58,.4)',
+    padding: '2em',
+    outline: 'none',
+    borderRadius: '8px'
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontFamily: 'ApercuMedium',
+    marginTop: '2em',
+    marginBottom: '2em'
+  },
+  button: {
+    boxShadow: 'none',
+  },
 });
 
 const theme = createMuiTheme({
@@ -87,14 +114,25 @@ function App(props) {
 
   const { isAuthenticated } = props.auth;
 
+  const [logoutModal, setLogoutModal] = React.useState(false);
+
   const RedirectToDashboard = () => (
     <Fragment>
       {isAuthenticated ? <Redirect to="/dashboard/home" /> : null}
     </Fragment>
   )
 
+  const handleLogoutOpen = () => {
+    setLogoutModal(true);
+  }
+
+  const handleLogoutClose = () => {
+    setLogoutModal(false);
+  }
+
   const logout = (e) => {
     e.preventDefault();
+    handleLogoutClose();
     props.userSignOutRequest();
   }
 
@@ -126,7 +164,35 @@ function App(props) {
             </Fragment>
           )}
           />
-          {isAuthenticated ? <Avatar className={classes.avatar} onClick={logout}>BC</Avatar> : null}
+          {isAuthenticated ? <Avatar className={classes.avatar} onClick={handleLogoutOpen}>BC</Avatar> : null}
+
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={logoutModal}
+            onClose={handleLogoutClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={logoutModal}>
+              <div className={classes.paper}>
+                <Typography variant="h5" className={classes.title}>Are you sure you want to sign out?</Typography>
+                <Box display="flex" justifyContent="flex-end" style={{ marginTop: '2em' }}>
+                  <Button color="primary" style={{ marginRight: 10 }} onClick={handleLogoutClose}>
+                    Cancel
+                  </Button>
+                  <Button variant="contained" color="primary" className={classes.button} onClick={logout}>
+                    Sign Out
+                  </Button>
+                </Box>
+              </div>
+            </Fade>
+          </Modal>
+
         </div>
       </BrowserRouter>
     </ThemeProvider>
