@@ -29,6 +29,7 @@ import Login from './Login/Login';
 import PrivateRoute from './Common/PrivateRoute';
 
 import './App.css';
+import MonkeyAvatar from '../src/Common/img/avatars/monkey.png';
 
 const useStyles = makeStyles({
   root: {
@@ -164,7 +165,7 @@ function App(props) {
             </Fragment>
           )}
           />
-          {isAuthenticated ? <Avatar className={classes.avatar} onClick={handleLogoutOpen}>BC</Avatar> : null}
+          {isAuthenticated ? <Avatar className={classes.avatar} src={MonkeyAvatar} onClick={handleLogoutOpen}></Avatar> : null}
 
           <Modal
             aria-labelledby="transition-modal-title"
