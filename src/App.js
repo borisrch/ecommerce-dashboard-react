@@ -36,12 +36,14 @@ const useStyles = makeStyles({
   },
   avatar: {
     position: 'absolute',
-    top: '0.3rem',
+    top: '0.35rem',
     left: 'calc(100% - 50px)',
+    width: 35,
+    height: 35,
     backgroundColor: green[500],
     '&:hover': {
       cursor: 'pointer'
-    }
+    },
   }
 });
 
