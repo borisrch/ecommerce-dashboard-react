@@ -34,7 +34,7 @@ const posts = [
     content: 'Expecting Hershal, Banana Republic top up.',
     date: 'Sep 15'
   },
-]
+];
 
 export default function Board(props) {
   const classes = useStyles();
