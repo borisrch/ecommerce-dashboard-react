@@ -4,7 +4,11 @@ import { makeStyles, Grid, Box, Typography, TextField, FormControl, InputLabel, 
 const useStyles = makeStyles((theme) => ({
   title: {
     fontFamily: 'ApercuMedium'
-  }
+  },
+  formControl: {
+    minWidth: 120,
+    marginTop: theme.spacing(2)
+  },
 }));
 
 export default function Basics(props) {
