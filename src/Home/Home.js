@@ -32,7 +32,7 @@ function Home(props) {
     <Container className={classes.container} maxWidth="lg">
       <Typography variant="h6" className={classes.title} gutterBottom>Dashboards</Typography>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Card
             title="Orders"
             button="Manage Orders"
@@ -41,7 +41,7 @@ function Home(props) {
             image={Orders}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Card
             title="Board"
             button="View Board"
@@ -50,13 +50,11 @@ function Home(props) {
             image={Board}
           />
         </Grid>
-        <Grid item xs={4}>
 
-        </Grid>
       </Grid>
-      <h3>Inventory Services</h3>
+      <Typography variant="h6" className={classes.title} gutterBottom>Inventory</Typography>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Card
             title="New Product Listing"
             button="Add New Product"
@@ -65,7 +63,7 @@ function Home(props) {
             image={NewProduct}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Card
             title="Product Stock"
             button="Update Stock"
@@ -74,7 +72,7 @@ function Home(props) {
             image={ProductStock}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Card
             title="Product Information"
             button="Update Product Information"
@@ -85,9 +83,9 @@ function Home(props) {
         </Grid>
       </Grid>
 
-      <h3>Account Settings</h3>
+      <Typography variant="h6" className={classes.title} gutterBottom>Account</Typography>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Card
             title="User Accounts"
             button="Manage User Accounts"
@@ -96,7 +94,7 @@ function Home(props) {
             image={ManageAccounts}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Card
             title="Change Password"
             button="Change Password"
