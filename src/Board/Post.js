@@ -15,6 +15,8 @@ import CommentIcon from '@material-ui/icons/Comment';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import getAvatar from '../Common/AnimalAvatars';
+
 const useStyles = makeStyles(theme => ({
   card: {
     // boxShadow: '0 0 1px 0 rgba(0,0,0,.28)',
@@ -31,7 +33,6 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[600],
   },
   rightIcon: {
     marginLeft: theme.spacing(1),
@@ -48,8 +49,8 @@ export default function Post(props) {
     <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            A
+          <Avatar aria-label="recipe" className={classes.avatar} src={getAvatar()}>
+
           </Avatar>
         }
         action={
@@ -67,8 +68,8 @@ export default function Post(props) {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-         <ThumbUpIcon />
-       </IconButton>
+          <ThumbUpIcon />
+        </IconButton>
 
         <Button color="primary" className={classes.button}>
           2
