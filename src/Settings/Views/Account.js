@@ -4,8 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Edit from '@material-ui/icons/KeyboardArrowRight';
 import Divider from '@material-ui/core/Divider';
+import Modal from '@material-ui/core/Modal';
+
 import Loading from './../../Common/Loading';
 import FieldRow from './../../Common/FieldRow';
+import FieldModal from './../../Common/FieldModal';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +42,12 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#f5f5f5',
       cursor: 'pointer'
     }
-  }
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 }));
 
 function a() {
@@ -51,6 +59,28 @@ export default function Account() {
 
   const [loading, setLoading] = React.useState(true);
 
+  const [fieldModal, setFieldModal] = React.useState({
+    open: false,
+    field: {
+      label: null,
+      value: null
+    }
+  });
+
+  const showFieldModal = (field) => {
+    setFieldModal({
+      open: true,
+      field,
+    });
+  };
+
+  const handleClose = () => {
+    setFieldModal({
+      ...fieldModal,
+      open: false
+    });
+  };
+
   setTimeout(() => {
     setLoading(false);
   }, 1000);
@@ -61,78 +91,26 @@ export default function Account() {
         <Typography variant="h6" gutterBottom>
           Profile
         </Typography>
-        <div className={classes.row}>
-          <Grid container onClick={a}>
-            <Grid item xs={3}>
-              <Typography variant="overline" className={classes.label} gutterBottom>
-                Name
-            </Typography>
-            </Grid>
-            <Grid item xs={8}>
-              <Typography variant="subtitle1" gutterBottom>
-                Bobby B.
-            </Typography>
-            </Grid>
-            <Grid item xs={1}>
-              <Edit></Edit>
-            </Grid>
-          </Grid>
-          <Divider light={true} />
-        </div>
-        <div className={classes.row}>
-          <Grid container onClick={a}>
-            <Grid item xs={3}>
-              <Typography variant="overline" className={classes.label} gutterBottom>
-                Email
-            </Typography>
-            </Grid>
-            <Grid item xs={8}>
-              <Typography variant="subtitle1" gutterBottom>
-                bobby.darcy@company.com
-            </Typography>
-            </Grid>
-            <Grid item xs={1}>
-              <Edit style={{ marginTop: '0.1em' }}></Edit>
-            </Grid>
-          </Grid>
-          <Divider light={true} style={{ marginTop: '0.25em' }} />
-        </div>
-        <div className={classes.row}>
-          <Grid container onClick={a}>
-            <Grid item xs={3}>
-              <Typography variant="overline" className={classes.label} gutterBottom>
-                Role
-            </Typography>
-            </Grid>
-            <Grid item xs={8}>
-              <Typography variant="subtitle1" gutterBottom>
-                Admin
-            </Typography>
-            </Grid>
-            <Grid item xs={1}>
+        <FieldRow label="Name" value="Bobby B" openModal={showFieldModal} />
+        <FieldRow label="Email" value="robert.baratheon@gmail.com" openModal={showFieldModal} />
+        <FieldRow label="Role" value="Admin" openModal={showFieldModal} />
+        <FieldRow label="Phone" value="123 456 789" openModal={showFieldModal} />
+        <Modal
+          disableAutoFocus={true}
+          disableBackdropClick
+          closeAfterTransition
+          open={fieldModal.open}
+          onClose={handleClose}
+          className={classes.modal}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <div style={{ outline: 'none' }}>
+            <FieldModal label={fieldModal.field.label} value={fieldModal.field.value} onClose={handleClose} />
+          </div>
+        </Modal>
 
-            </Grid>
-          </Grid>
-          <Divider light={true} style={{ marginTop: '0.25em' }} />
-        </div>
-        <div className={classes.row}>
-          <Grid container onClick={a}>
-            <Grid item xs={3}>
-              <Typography variant="overline" className={classes.label} gutterBottom>
-                Phone
-            </Typography>
-            </Grid>
-            <Grid item xs={8}>
-              <Typography variant="subtitle1" gutterBottom>
-                123 456 7890
-            </Typography>
-            </Grid>
-            <Grid item xs={1}>
-              <Edit style={{ marginTop: '0.1em' }}></Edit>
-            </Grid>
-          </Grid>
-          <Divider light={true} style={{ marginTop: '0.25em' }} />
-        </div>
       </React.Fragment>
     );
   }
