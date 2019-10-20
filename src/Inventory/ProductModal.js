@@ -124,7 +124,6 @@ export default function ProductModal(props) {
         <div style={{ outline: 'none' }}>
           <FieldModal label={fieldModal.field.label} value={fieldModal.field.value} onClose={handleClose} item={props.item} setProduct={props.setProduct} />
         </div>
-
       </Modal>
 
     </Container>
