@@ -19,6 +19,9 @@ import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import Orders from './Orders/Orders';
 import Home from './Home/Home';
@@ -42,14 +45,18 @@ const useStyles = makeStyles({
     fontFamily: 'ApercuMedium',
   },
   avatar: {
-    position: 'absolute',
-    top: '0.35rem',
-    left: 'calc(100% - 50px)',
     width: 35,
     height: 35,
-    backgroundColor: green[500],
+    backgroundColor: 'none',
+  },
+  avatarGroup: {
+    position: 'absolute',
+    top: '0.35rem',
+    left: 'calc(100% - 75px)',
+    color: 'rgba(0,0,0,0.54)',
     '&:hover': {
-      cursor: 'pointer'
+      cursor: 'pointer',
+      color: blue[200]
     },
   },
   paper: {
@@ -73,6 +80,10 @@ const useStyles = makeStyles({
   button: {
     boxShadow: 'none',
   },
+  avatarIcon: {
+    marginLeft: 5,
+    marginTop: 5
+  }
 });
 
 const theme = createMuiTheme({
@@ -137,6 +148,15 @@ function App(props) {
     props.userSignOutRequest();
   }
 
+  const AvatarGroup = () => {
+    return (
+      <Box display="flex" alignItems="center" className={classes.avatarGroup} onClick={handleLogoutOpen}>
+        <Avatar className={classes.avatar} src={MonkeyAvatar} />
+        <ExpandMoreIcon className={classes.avatarIcon} />
+      </Box>
+    );
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -165,7 +185,7 @@ function App(props) {
             </Fragment>
           )}
           />
-          {isAuthenticated ? <Avatar className={classes.avatar} src={MonkeyAvatar} onClick={handleLogoutOpen}></Avatar> : null}
+          {isAuthenticated ? <AvatarGroup /> : null}
 
           <Modal
             aria-labelledby="transition-modal-title"
