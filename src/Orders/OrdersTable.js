@@ -89,7 +89,7 @@ export default function SimpleTable() {
       return (
         <Chip
           label={props.status}
-          style={{color: '#fff', backgroundColor: '#3F51B5'}}
+          style={{ color: '#1A237E', backgroundColor: '#C5CAE9' }}
         />
       )
     }
@@ -100,56 +100,56 @@ export default function SimpleTable() {
     switch (props.fulfillment) {
       case 'Processing':
         return (
-        <Chip
-          icon={<CachedIcon style={{color: '#fff'}} />}
-          label={props.fulfillment}
-          style={{color: '#fff', backgroundColor: '#78909c', paddingLeft: 2}}
-        />
-      )
+          <Chip
+            icon={<CachedIcon style={{ color: '#263238' }} fontSize="small" />}
+            label={props.fulfillment}
+            style={{ color: '#263238', backgroundColor: '#ECEFF1', paddingLeft: 2 }}
+          />
+        )
 
       case 'Confirmed':
         return (
-        <Chip
-          icon={<ConfirmedIcon style={{color: '#fff'}} />}
-          label={props.fulfillment}
-          style={{color: '#fff', backgroundColor: '#fbc02d', paddingLeft: 2}}
-        />
-      )
+          <Chip
+            icon={<ConfirmedIcon style={{ color: '#FF6F00' }} fontSize="small" />}
+            label={props.fulfillment}
+            style={{ color: '#FF6F00', backgroundColor: '#FFECB3', paddingLeft: 2 }}
+          />
+        )
 
       case 'Packing':
         return (
-        <Chip
-          icon={<PackingIcon style={{color: '#fff'}} />}
-          label={props.fulfillment}
-          style={{color: '#fff', backgroundColor: '#8BC34A', paddingLeft: 2}}
-        />
-      )
+          <Chip
+            icon={<PackingIcon style={{ color: '#33691E' }} fontSize="small" />}
+            label={props.fulfillment}
+            style={{ color: '#33691E', backgroundColor: '#DCEDC8', paddingLeft: 2 }}
+          />
+        )
 
       case 'Shipped':
         return (
-        <Chip
-          icon={<ShippingIcon style={{color: '#fff'}} />}
-          label={props.fulfillment}
-          style={{color: '#fff', backgroundColor: '#03A9F4', paddingLeft: 2}}
-        />
-      )
+          <Chip
+            icon={<ShippingIcon style={{ color: '#0D47A1' }} fontSize="small" />}
+            label={props.fulfillment}
+            style={{ color: '#0D47A1', backgroundColor: '#BBDEFB', paddingLeft: 2 }}
+          />
+        )
 
       case 'Unfulfilled':
         return (
-        <Chip
-          icon={<ErrorIcon style={{color: '#fff'}} />}
-          label={props.fulfillment}
-          style={{color: '#fff', backgroundColor: '#FF5722', paddingLeft: 2}}
-        />
-      )
+          <Chip
+            icon={<ErrorIcon style={{ color: '#b71c1c' }} fontSize="small" />}
+            label={props.fulfillment}
+            style={{ color: '#b71c1c', backgroundColor: '#ffcdd2', paddingLeft: 2 }}
+          />
+        )
 
       default:
         return (
-        <Chip
-          icon={<DoneIcon style={{color: '#fff'}} />}
-          label={props.fulfillment}
-        />
-      )
+          <Chip
+            icon={<DoneIcon style={{ color: '#fff' }} fontSize="small" />}
+            label={props.fulfillment}
+          />
+        )
     }
 
     // if (props.fulfillment === 'Processing') {
@@ -198,11 +198,11 @@ export default function SimpleTable() {
               <TableCell align="right">{row.customer}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
               <TableCell align="right">
-                <Fulfillment fulfillment={row.fulfillment}/>
+                <Fulfillment fulfillment={row.fulfillment} />
               </TableCell>
               <TableCell align="right">{row.total}</TableCell>
               <TableCell align="right">
-                <StatusChip status={row.status}/>
+                <StatusChip status={row.status} />
               </TableCell>
               <TableCell align="right">{row.updated}</TableCell>
             </TableRow>
