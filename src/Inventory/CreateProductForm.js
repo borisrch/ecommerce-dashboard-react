@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Box, makeStyles, Button, Stepper, Step, StepLabel } from "@material-ui/core";
+import { Container, Box, makeStyles, Button, Stepper, Step, StepLabel, Grid } from "@material-ui/core";
 
 import Basics from './Form/Basics';
 
@@ -84,19 +84,31 @@ export default function CreateProductForm() {
       <Box className={classes.content}>
         {getStepContent(activeStep)}
       </Box>
-      <Box display="flex" justifyContent="flex-end" style={{ marginTop: '2em' }}>
-        {activeStep > 0 ? <Button color="primary" className={classes.button} style={{ marginRight: '1em' }} onClick={handleBack}>Back</Button> : null}
-        {activeStep === steps.length - 1 ?
-          (
-            <Button variant="contained" color="primary" className={classes.button}>
-              Finish
-            </Button>
-          ) : (
-            <Button variant="contained" color="primary" className={classes.button} onClick={handleNext}>
-              Next
-            </Button>
-          )}
-      </Box>
+
+      <Grid container style={{ marginTop: '2em' }}>
+        <Grid item xs={6}>
+          <Button variant="outlined" color="secondary" className={classes.button}>
+            Quit
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
+          <Box display="flex" justifyContent="flex-end">
+            {activeStep > 0 ? <Button color="primary" className={classes.button} style={{ marginRight: '1em' }} onClick={handleBack}>Back</Button> : null}
+            {activeStep === steps.length - 1 ?
+              (
+                <Button variant="contained" color="primary" className={classes.button}>
+                  Finish
+                </Button>
+              ) : (
+                <Button variant="contained" color="primary" className={classes.button} onClick={handleNext}>
+                  Next
+                </Button>
+              )}
+          </Box>
+        </Grid>
+      </Grid>
+
+
 
       { /* 
 
