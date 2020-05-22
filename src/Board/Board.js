@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
   title: {
     fontFamily: 'ApercuMedium',
     marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(4)
+    marginBottom: theme.spacing(4),
+    color: '#525f7f'
   },
 }));
 
