@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Add from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
+import blue from '@material-ui/core/colors/blue';
 
 import Post from './Post';
 
@@ -20,15 +21,16 @@ const useStyles = makeStyles(theme => ({
     }
   },
   button: {
+    backgroundColor: blue[100],
     '&:hover': {
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.primary.main,
       "& $addIcon": {
         color: 'white'
       }
     }
   },
   addIcon: {
-    color: theme.palette.primary.light
+    color: theme.palette.primary.main
   }
 }));
 
