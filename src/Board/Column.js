@@ -18,6 +18,17 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#e3f2fd',
       color: 'white',
     }
+  },
+  button: {
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light,
+      "& $addIcon": {
+        color: 'white'
+      }
+    }
+  },
+  addIcon: {
+    color: theme.palette.primary.light
   }
 }));
 
@@ -43,8 +54,8 @@ export default function Board(props) {
     <React.Fragment>
       <Typography variant="h5" gutterBottom style={{ fontFamily: 'ApercuMedium' }}>{props.name}</Typography>
       <Paper className={classes.paper}>
-        <Button fullWidth={true} color="primary">
-          <Add />
+        <Button fullWidth={true} color="primary" className={classes.button}>
+          <Add className={classes.addIcon}/>
         </Button>
       </Paper>
       <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">
