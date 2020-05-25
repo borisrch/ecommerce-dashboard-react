@@ -37,6 +37,9 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     marginTop: theme.spacing(4),
+  },
+  formControlLabel: {
+    fontSize: '0.875rem',
   }
 }));
 
@@ -147,17 +150,17 @@ const Login = (props) => {
                   color="primary"
                   disabled={submit}
                 />
-              } label="Remember me" />
+              } label={<Typography className={classes.formControlLabel}>Remember Me</Typography>} />
             </Grid>
             <Grid item>
-              <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary" disabled={submit}>Forgot password</Button>
+              <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary" disabled={submit}>Forgot Password</Button>
             </Grid>
           </Grid>
           <Grid container justify="center" className={classes.button}>
             <Button
               variant="contained"
               color="primary"
-              style={{ boxShadow: "none", width: 100, marginBottom: '1rem' }}
+              style={{ boxShadow: "none", width: 100, marginBottom: "1rem", textTransform: "none" }}
               onClick={onSubmit}
               disabled={submit}>
               {
