@@ -4,24 +4,11 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { userSignOutRequest } from './store/actions/auth';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
 import blue from "@material-ui/core/colors/blue";
-import green from "@material-ui/core/colors/green";
-import Avatar from '@material-ui/core/Avatar';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+import { Avatar, Modal, Backdrop, Fade, Typography, Box, Button, Paper, Tabs, Tab } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 
 import Orders from './Orders/Orders';
 import Home from './Home/Home';
@@ -33,7 +20,6 @@ import PrivateRoute from './Common/PrivateRoute';
 
 import './App.css';
 import MonkeyAvatar from '../src/Common/img/avatars/monkey.png';
-import { colors } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -42,12 +28,14 @@ const useStyles = makeStyles({
     boxShadow: '0 10px 20px rgba(0,0,0,0.025), 0 2px 2px rgba(0,0,0,0.05)',
     borderRadius: '0px',
     padding: '2px 0px 0px 5px',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    // backgroundColor: '#1a237e',
   },
   tab: {
     fontFamily: 'ApercuMedium',
     textTransform: 'none',
-    color: '#1E2734',
+    // color: '#fff',
+    color: '#525f7f',
     fontSize: '0.85rem',
   },
   avatar: {
@@ -98,7 +86,7 @@ const theme = createMuiTheme({
       light: blue[300],
       main: blue[500],
       dark: blue[700]
-    }
+    },
   },
   typography: {
     fontFamily: [
