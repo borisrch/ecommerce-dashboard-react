@@ -1,20 +1,11 @@
-import React, { Fragment } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import RefreshIcon from "@material-ui/icons/Refresh";
-import SortIcon from "@material-ui/icons/Sort";
-import ArrowBack from "@material-ui/icons/ArrowBack";
-import Box from "@material-ui/core/Box";
 
-import Search from "./Search";
-import SideBar from "./Sidebar";
+import { Typography, Paper, IconButton, Button } from "@material-ui/core/";
+import { Refresh, Sort } from "@material-ui/icons";
+
 import OrdersTable from "./OrdersTable";
 import PageTitle from './../Common/PageTitle';
 
@@ -64,11 +55,6 @@ export default function Orders() {
     setLastUpdatedTime(`${new Date().toLocaleString()}`);
   }, []);
 
-  const history = useHistory();
-  const changeRoute = () => {
-    history.push("/dashboard/home");
-  };
-
   return (
     <React.Fragment>
       <Container maxWidth="lg">
@@ -77,10 +63,10 @@ export default function Orders() {
           <div style={{ display: "flex" }}>
             <div>
               <IconButton className={classes.button} color="primary">
-                <SortIcon />
+                <Sort />
               </IconButton>
               <IconButton className={classes.button}>
-                <RefreshIcon />
+                <Refresh />
               </IconButton>
             </div>
             <div className={classes.action}>
