@@ -41,6 +41,7 @@ const useStyles = makeStyles({
     zIndex: 3000,
     boxShadow: '0 10px 20px rgba(0,0,0,0.025), 0 2px 2px rgba(0,0,0,0.05)',
     borderRadius: '0px',
+    padding: '2px 0px 0px 5px'
   },
   tab: {
     fontFamily: 'ApercuMedium',
@@ -55,12 +56,12 @@ const useStyles = makeStyles({
   },
   avatarGroup: {
     position: 'absolute',
-    top: '0.35rem',
+    top: '0.5rem',
     left: 'calc(100% - 75px)',
     color: 'rgba(0,0,0,0.54)',
     '&:hover': {
       cursor: 'pointer',
-      color: blue[200]
+      color: blue[500]
     },
   },
   paper: {
