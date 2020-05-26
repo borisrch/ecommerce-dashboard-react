@@ -1,57 +1,66 @@
 import React, { Fragment } from "react";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import OrdersTable from './OrdersTable';
-import Search from './Search';
-import SideBar from './Sidebar';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import RefreshIcon from '@material-ui/icons/Refresh';
-import SortIcon from '@material-ui/icons/Sort';
+import { useHistory } from "react-router-dom";
+
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
+import RefreshIcon from "@material-ui/icons/Refresh";
+import SortIcon from "@material-ui/icons/Sort";
+import ArrowBack from "@material-ui/icons/ArrowBack";
+import Box from "@material-ui/core/Box";
+
+import Search from "./Search";
+import SideBar from "./Sidebar";
+import OrdersTable from "./OrdersTable";
 
 const drawerWidth = 210;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
     zIndex: 0,
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: "nowrap",
   },
   title: {
-    fontFamily: 'ApercuMedium',
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(4),
-    color: '#525f7f'
+    fontFamily: "ApercuMedium",
+    color: "#525f7f",
+    marginTop: 4,
+    marginLeft: 4,
+  },
+  titleContainer: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
   },
   paper: {
-    boxShadow: '0 0 1px 0 rgba(0,0,0,.22)',
+    boxShadow: "0 0 1px 0 rgba(0,0,0,.22)",
   },
   toolbar: {
     boxShadow: "0 0 11px #eaf0f6",
     display: "inline-block",
     marginBottom: theme.spacing(1),
-    width: "100%"
+    width: "100%",
   },
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   action: {
     marginLeft: "auto",
     marginTop: "0.8rem",
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   lastUpdated: {
     marginTop: theme.spacing(2),
     padding: 0,
-    color: "rgb(112, 117, 122)"
-  }
+    color: "rgb(112, 117, 122)",
+  },
 }));
 
 export default function Orders() {
@@ -64,11 +73,28 @@ export default function Orders() {
     setLastUpdatedTime(`${new Date().toLocaleString()}`);
   }, []);
 
+  const history = useHistory();
+  const changeRoute = () => {
+    history.push("/dashboard/home");
+  };
+
   return (
     <React.Fragment>
       <Container maxWidth="lg">
-        <Typography variant="h6" className={classes.title} gutterBottom>Orders</Typography>
-
+        <Box
+          display="flex"
+          justifyContent="flex-start"
+          justify="center"
+          alignItems="center"
+          className={classes.titleContainer}
+        >
+          <IconButton aria-label="delete" onClick={changeRoute}>
+            <ArrowBack />
+          </IconButton>
+          <Typography variant="h6" className={classes.title} gutterBottom>
+            Orders
+          </Typography>
+        </Box>
         <Paper className={classes.toolbar}>
           <div style={{ display: "flex" }}>
             <div>
@@ -93,4 +119,4 @@ export default function Orders() {
       </Container>
     </React.Fragment>
   );
-};
+}
