@@ -16,6 +16,7 @@ import Box from "@material-ui/core/Box";
 import Search from "./Search";
 import SideBar from "./Sidebar";
 import OrdersTable from "./OrdersTable";
+import PageTitle from './../Common/PageTitle';
 
 const drawerWidth = 210;
 
@@ -28,16 +29,6 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: "nowrap",
-  },
-  title: {
-    fontFamily: "ApercuMedium",
-    color: "#525f7f",
-    marginTop: 4,
-    marginLeft: 4,
-  },
-  titleContainer: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
   },
   paper: {
     boxShadow: "0 0 1px 0 rgba(0,0,0,.22)",
@@ -81,20 +72,7 @@ export default function Orders() {
   return (
     <React.Fragment>
       <Container maxWidth="lg">
-        <Box
-          display="flex"
-          justifyContent="flex-start"
-          justify="center"
-          alignItems="center"
-          className={classes.titleContainer}
-        >
-          <IconButton aria-label="delete" onClick={changeRoute}>
-            <ArrowBack />
-          </IconButton>
-          <Typography variant="h6" className={classes.title} gutterBottom>
-            Orders
-          </Typography>
-        </Box>
+      <PageTitle title="Orders"/>
         <Paper className={classes.toolbar}>
           <div style={{ display: "flex" }}>
             <div>

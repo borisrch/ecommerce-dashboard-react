@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import { Typography, Grid } from '@material-ui/core';
 
 import Column from './Column';
+import PageTitle from './../Common/PageTitle';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -19,7 +20,7 @@ export default function Board() {
 
   return (
     <Container>
-      <Typography variant="h6" className={classes.title}>Board</Typography>
+      <PageTitle title="Board"/>
 
       <Grid container spacing={3}>
         <Grid item xs={4}>

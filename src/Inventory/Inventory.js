@@ -26,6 +26,7 @@ import EmptyInventory from "./EmptyInventory";
 import SearchModal from "./SearchModal";
 import ProductModal from "./ProductModal";
 import CreateProductForm from "./CreateProductForm";
+import PageTitle from "./../Common/PageTitle";
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -142,9 +143,7 @@ const Inventory = props => {
   return (
     <React.Fragment>
       <Container maxWidth="lg">
-        <Typography variant="h6" className={classes.title} gutterBottom>
-          Inventory
-        </Typography>
+        <PageTitle title="Inventory"/>
         <Paper className={classes.toolbar}>
           <div style={{ display: "flex" }}>
             <div>

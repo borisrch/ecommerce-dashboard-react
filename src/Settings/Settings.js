@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
 import SettingTabs from './SettingTabs';
+import PageTitle from './../Common/PageTitle';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -26,7 +27,7 @@ export default function Settings() {
 
   return (
     <Container maxWidth="lg">
-      <Typography variant="h6" className={classes.title} gutterBottom>Account Settings</Typography>
+      <PageTitle title="Settings"/>
       <Paper className={classes.paper}>
         <SettingTabs />
       </Paper>
