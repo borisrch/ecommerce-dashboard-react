@@ -41,7 +41,8 @@ const useStyles = makeStyles({
     zIndex: 3000,
     boxShadow: '0 10px 20px rgba(0,0,0,0.025), 0 2px 2px rgba(0,0,0,0.05)',
     borderRadius: '0px',
-    padding: '2px 0px 0px 5px'
+    padding: '2px 0px 0px 5px',
+    overflow: 'hidden'
   },
   tab: {
     fontFamily: 'ApercuMedium',
