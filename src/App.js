@@ -33,6 +33,7 @@ import PrivateRoute from './Common/PrivateRoute';
 
 import './App.css';
 import MonkeyAvatar from '../src/Common/img/avatars/monkey.png';
+import { colors } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -43,6 +44,9 @@ const useStyles = makeStyles({
   },
   tab: {
     fontFamily: 'ApercuMedium',
+    textTransform: 'none',
+    color: '#1E2734',
+    fontSize: '0.85rem',
   },
   avatar: {
     width: 35,
