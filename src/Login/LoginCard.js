@@ -1,27 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import isEmpty from 'lodash/isEmpty';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import isEmpty from "lodash/isEmpty";
 
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox, Typography, InputAdornment, CircularProgress } from '@material-ui/core';
-import { LockOutlined, PersonOutline } from '@material-ui/icons'
-import ErrorMessage from './ErrorMessage';
+import Container from "@material-ui/core/Container";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Paper,
+  withStyles,
+  Grid,
+  TextField,
+  Button,
+  FormControlLabel,
+  Checkbox,
+  Typography,
+  InputAdornment,
+  CircularProgress,
+  Box,
+} from "@material-ui/core";
+import { LockOutlined, PersonOutline } from "@material-ui/icons";
+import ErrorMessage from "./ErrorMessage";
 
-const useStyles = makeStyles(theme => ({
+import ShopCastLogo from "../Common/img/shopcast.svg";
+
+const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(1),
     // boxShadow: '0 0 1px 0 rgba(0,0,0,.22)',
-    boxShadow: '0 0 11px #eaf0f6',
+    boxShadow: "0 0 11px #eaf0f6",
   },
   margin: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   title: {
-    fontFamily: 'ApercuMedium',
+    fontFamily: "ApercuMedium",
     marginBottom: theme.spacing(6),
-    paddingTop: '20vh'
+    paddingTop: "20vh",
   },
   textfield: {
     marginBottom: theme.spacing(4),
@@ -30,22 +44,26 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1),
   },
   inactive: {
-    color: '#757575'
+    color: "#757575",
   },
   active: {
-    color: '#2196F3'
+    color: "#2196F3",
   },
   button: {
     marginTop: theme.spacing(4),
   },
   formControlLabel: {
-    fontSize: '0.875rem',
-  }
+    fontSize: "0.875rem",
+  },
+  logo: {
+    width: "96px",
+    userSelect: "none",
+    pointerEvents: "none",
+  },
 }));
 
 const Login = (props) => {
   const classes = useStyles();
-
 
   // Misc UI indicators
   const [username, setUsername] = React.useState(false);
@@ -54,12 +72,12 @@ const Login = (props) => {
 
   // Values
   const [creds, setCreds] = React.useState({
-    username: 'name@company.com',
-    password: '',
+    username: "name@company.com",
+    password: "",
   });
   const [errors, setErrors] = React.useState({
     username: false,
-    password: false
+    password: false,
   });
 
   const onSubmit = () => {
@@ -67,35 +85,46 @@ const Login = (props) => {
 
     if (!isEmpty(creds.username) && !isEmpty(creds.password)) {
       props.userSignInRequest(creds);
-
     } else {
       setSubmit(false);
       if (isEmpty(creds.username)) {
         setErrors({
-          username: true
+          username: true,
         });
       }
       if (isEmpty(creds.password)) {
         setErrors({
           ...errors,
-          password: true
-        })
+          password: true,
+        });
       }
     }
-  }
+  };
 
   const ShowErrorMessage = () => {
     setSubmit(false);
     return (
-      <ErrorMessage variant={props.errorMessage.variant} message={props.errorMessage.message.message} />
+      <ErrorMessage
+        variant={props.errorMessage.variant}
+        message={props.errorMessage.message.message}
+      />
     );
-  }
+  };
 
   return (
     <Container maxWidth="sm">
       <Paper className={classes.paper}>
         <div className={classes.margin}>
-          <Typography variant="h4" className={classes.title} gutterBottom>Welcome back!</Typography>
+          <Box display="flex">
+            <img
+              className={classes.logo}
+              src={ShopCastLogo}
+              draggable="false"
+            />
+          </Box>
+          <Typography variant="h4" className={classes.title} gutterBottom>
+            Welcome back!
+          </Typography>
           <TextField
             className={classes.textfield}
             id="username"
@@ -106,7 +135,9 @@ const Login = (props) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <PersonOutline className={username ? classes.active : classes.inactive} />
+                  <PersonOutline
+                    className={username ? classes.active : classes.inactive}
+                  />
                 </InputAdornment>
               ),
             }}
@@ -130,7 +161,9 @@ const Login = (props) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <LockOutlined className={password ? classes.active : classes.inactive} />
+                  <LockOutlined
+                    className={password ? classes.active : classes.inactive}
+                  />
                 </InputAdornment>
               ),
             }}
@@ -145,48 +178,65 @@ const Login = (props) => {
           />
           <Grid container alignItems="center" justify="space-between">
             <Grid item>
-              <FormControlLabel control={
-                <Checkbox
-                  color="primary"
-                  disabled={submit}
-                />
-              } label={<Typography className={classes.formControlLabel}>Remember Me</Typography>} />
+              <FormControlLabel
+                control={<Checkbox color="primary" disabled={submit} />}
+                label={
+                  <Typography className={classes.formControlLabel}>
+                    Remember Me
+                  </Typography>
+                }
+              />
             </Grid>
             <Grid item>
-              <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary" disabled={submit}>Forgot Password</Button>
+              <Button
+                disableFocusRipple
+                disableRipple
+                style={{ textTransform: "none" }}
+                variant="text"
+                color="primary"
+                disabled={submit}
+              >
+                Forgot Password
+              </Button>
             </Grid>
           </Grid>
           <Grid container justify="center" className={classes.button}>
             <Button
               variant="contained"
               color="primary"
-              style={{ boxShadow: "none", width: 100, marginBottom: "1rem", textTransform: "none" }}
+              style={{
+                boxShadow: "none",
+                width: 100,
+                marginBottom: "1rem",
+                textTransform: "none",
+              }}
               onClick={onSubmit}
-              disabled={submit}>
-              {
-                submit ? <CircularProgress style={{ color: '#fff' }} size={24} /> : <Typography>Sign In</Typography>
-              }
+              disabled={submit}
+            >
+              {submit ? (
+                <CircularProgress style={{ color: "#fff" }} size={24} />
+              ) : (
+                <Typography>Sign In</Typography>
+              )}
             </Button>
             <div style={{ width: 352, height: 112 }}>
-              {
-                props.errorMessage.message ? <ShowErrorMessage /> : null
-              }
+              {props.errorMessage.message ? <ShowErrorMessage /> : null}
             </div>
           </Grid>
         </div>
       </Paper>
     </Container>
-  )
-}
+  );
+};
 
 Login.propTypes = {
-  userSignInRequest: PropTypes.func.isRequired
-}
+  userSignInRequest: PropTypes.func.isRequired,
+};
 
 function mapStateToProps(state) {
   return {
-    errorMessage: state.auth.error
-  }
+    errorMessage: state.auth.error,
+  };
 }
 
 export default connect(mapStateToProps)(Login);
