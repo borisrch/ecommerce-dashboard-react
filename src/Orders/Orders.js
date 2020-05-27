@@ -7,7 +7,7 @@ import { Typography, Paper, IconButton, Button } from "@material-ui/core/";
 import { Refresh, Sort } from "@material-ui/icons";
 
 import OrdersTable from "./OrdersTable";
-import PageTitle from './../Common/PageTitle';
+import PageTitle from "./../Common/PageTitle";
 
 const drawerWidth = 210;
 
@@ -58,7 +58,7 @@ export default function Orders() {
   return (
     <React.Fragment>
       <Container maxWidth="lg">
-      <PageTitle title="Orders"/>
+        <PageTitle title="Orders" />
         <Paper className={classes.toolbar}>
           <div style={{ display: "flex" }}>
             <div>
@@ -75,11 +75,6 @@ export default function Orders() {
           </div>
         </Paper>
         <OrdersTable />
-        <Container className={classes.lastUpdated}>
-          <Typography variant="overline">
-            Orders up to date. Last retrieved at {lastUpdatedTime}
-          </Typography>
-        </Container>
       </Container>
     </React.Fragment>
   );

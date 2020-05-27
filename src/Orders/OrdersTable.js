@@ -1,4 +1,6 @@
 import React from "react";
+import clsx from "clsx";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -36,10 +38,15 @@ const useStyles = makeStyles((theme) => ({
   tableHead: {
     fontFamily: "ApercuMedium",
     fontSize: "0.875rem",
-    color: '#525f7f',
+    color: "#525f7f",
   },
   tableHeadCell: {
     padding: theme.spacing(1),
+  },
+  tableFoot: {
+    fontFamily: "ApercuMedium",
+    fontSize: "0.875rem",
+    color: "#525f7f",
   },
   button: {
     margin: theme.spacing(1),
@@ -64,6 +71,9 @@ const useStyles = makeStyles((theme) => ({
   unfulfilledChip: {
     backgroundColor: "#F44336",
     color: "#fff",
+  },
+  active: {
+    color: theme.palette.primary.main,
   },
 }));
 
@@ -145,6 +155,12 @@ const rows = [
 export default function SimpleTable() {
   const classes = useStyles();
 
+  const [lastUpdatedTime, setLastUpdatedTime] = React.useState("N/A");
+  React.useEffect(() => {
+    // props.dispatch(fetchProducts());
+    setLastUpdatedTime(`${new Date().toLocaleString()}`);
+  }, []);
+
   const [data, setData] = React.useState(rows);
 
   /* -1: unsorted/unused
@@ -152,47 +168,31 @@ export default function SimpleTable() {
       1: is ascending
   */
   const [sortData, setSortData] = React.useState({
-    id: -1, 
+    id: -1,
   });
-
-  const updateData = () => {
-    const rows = [
-      createData(
-        3,
-        new Date().toLocaleDateString(),
-        "Test",
-        "Unfulfilled",
-        240,
-        "Paid",
-        "Today"
-      ),
-    ];
-
-    setData(rows);
-  };
 
   const sortById = () => {
     const dataset = [...data];
 
     if (sortData.id < 1) {
-      console.log('Unsorted. Sorting By Ascending');
-      dataset.sort(function(a, b) {
+      console.log("Unsorted. Sorting By Ascending");
+      dataset.sort(function (a, b) {
         return a.orderId - b.orderId;
       });
       setSortData({
         ...sortData,
-        id: 1
+        id: 1,
       });
     } else {
-      console.log('Sorted. Sorting By Descending');
+      console.log("Sorted. Sorting By Descending");
       dataset.reverse();
       setSortData({
         ...sortData,
-        id: 0
+        id: 0,
       });
     }
     setData(dataset);
-  }
+  };
 
   function StatusChip(props) {
     if (props.status === "Paid") {
@@ -286,82 +286,90 @@ export default function SimpleTable() {
           />
         );
     }
-
-    // if (props.fulfillment === 'Processing') {
-    //   return (
-    //     <Chip
-    //       icon={<DoneIcon style={{color: '#fff'}} />}
-    //       label={props.fulfillment}
-    //       className={classes.unfulfilledChip}
-    //     />
-    //   )
-    // } else {
-    //   return (
-    //     <Chip
-    //       icon={<DoneIcon style={{color: '#fff'}} />}
-    //       label={props.fulfillment}
-    //     />
-    //   )
-    // }
   }
 
   return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.tableHeadCell}> 
-              <Box display="flex" justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.tableHead}>Order ID</Typography>
-                <IconButton style={{marginLeft: '2px'}} onClick={sortById}>
-                  <UnfoldMoreIcon fontSize="small" />
-                </IconButton>
-              </Box>
-            </TableCell>
-            <TableCell className={classes.tableHead} align="right">
-              Created
-            </TableCell>
-            <TableCell className={classes.tableHead} align="right">
-              Customer
-            </TableCell>
-            <TableCell className={classes.tableHead} align="right">
-              Email
-            </TableCell>
-            <TableCell className={classes.tableHead} align="right">
-              Fulfillment
-            </TableCell>
-            <TableCell className={classes.tableHead} align="right">
-              Total
-            </TableCell>
-            <TableCell className={classes.tableHead} align="right">
-              Status
-            </TableCell>
-            <TableCell className={classes.tableHead} align="right">
-              Last Updated
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((row) => (
-            <TableRow key={row.orderId} className={classes.row}>
-              <TableCell component="th" scope="row">
-                {row.orderId}
+    <React.Fragment>
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.tableHeadCell}>
+                <Box
+                  display="flex"
+                  justifyContent="flex-start"
+                  alignItems="center"
+                >
+                  <Typography className={classes.tableHead}>
+                    Order ID
+                  </Typography>
+                  <IconButton style={{ marginLeft: "2px" }} onClick={sortById}>
+                    <UnfoldMoreIcon
+                      fontSize="small"
+                      className={clsx(sortData.id > -1 && classes.active)}
+                    />
+                  </IconButton>
+                </Box>
               </TableCell>
-              <TableCell align="right">{row.created}</TableCell>
-              <TableCell align="right">{row.customer}</TableCell>
-              <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right">
-                <Fulfillment fulfillment={row.fulfillment} />
+              <TableCell className={classes.tableHead} align="right">
+                Created
               </TableCell>
-              <TableCell align="right">{row.total}</TableCell>
-              <TableCell align="right">
-                <StatusChip status={row.status} />
+              <TableCell className={classes.tableHead} align="right">
+                Customer
               </TableCell>
-              <TableCell align="right">{row.updated}</TableCell>
+              <TableCell className={classes.tableHead} align="right">
+                Email
+              </TableCell>
+              <TableCell className={classes.tableHead} align="right">
+                Fulfillment
+              </TableCell>
+              <TableCell className={classes.tableHead} align="right">
+                Total
+              </TableCell>
+              <TableCell className={classes.tableHead} align="right">
+                Status
+              </TableCell>
+              <TableCell className={classes.tableHead} align="right">
+                Last Updated
+              </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
+          </TableHead>
+          <TableBody>
+            {data.map((row) => (
+              <TableRow key={row.orderId} className={classes.row}>
+                <TableCell component="th" scope="row">
+                  {row.orderId}
+                </TableCell>
+                <TableCell align="right">{row.created}</TableCell>
+                <TableCell align="right">{row.customer}</TableCell>
+                <TableCell align="right">{row.email}</TableCell>
+                <TableCell align="right">
+                  <Fulfillment fulfillment={row.fulfillment} />
+                </TableCell>
+                <TableCell align="right">{row.total}</TableCell>
+                <TableCell align="right">
+                  <StatusChip status={row.status} />
+                </TableCell>
+                <TableCell align="right">{row.updated}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+      <div style={{ width: "100%", marginTop: "1em" }}>
+        <Box display="flex">
+          <Box width="50%">
+            <Typography className={classes.tableFoot}>
+              1-{data.length} of {Math.floor(Math.random() * 100)} results
+            </Typography>
+          </Box>
+          <Box width="50%" textAlign="right">
+            <Typography className={classes.tableFoot}>
+              Orders up to date. Last retrieved at {lastUpdatedTime}
+            </Typography>
+          </Box>
+        </Box>
+      </div>
+    </React.Fragment>
   );
 }
