@@ -35,6 +35,8 @@ const animals = [
 ];
 
 export default function getAvatar(index) {
-  index = index || Math.floor(Math.random() * animals.length);
+  index =
+    (index < animals.length ? index : null) ||
+    Math.floor(Math.random() * animals.length);
   return animals[index];
 }
