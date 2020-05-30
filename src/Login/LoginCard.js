@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.875rem",
   },
   logo: {
-    width: "96px",
+    width: "128px",
     userSelect: "none",
     pointerEvents: "none",
   },
