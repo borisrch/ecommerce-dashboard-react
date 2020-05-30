@@ -23,6 +23,7 @@ import PackingIcon from "@material-ui/icons/MoveToInbox";
 import UnfoldMoreIcon from "@material-ui/icons/UnfoldMore";
 
 import { Typography, Box, IconButton } from "@material-ui/core";
+import { Pagination } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -194,6 +195,12 @@ export default function SimpleTable() {
     setData(dataset);
   };
 
+  // Placeholder hooks for pagination.
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
   function StatusChip(props) {
     if (props.status === "Paid") {
       return <Typography variant="body2">Paid</Typography>;
@@ -359,9 +366,10 @@ export default function SimpleTable() {
       <div style={{ width: "100%", marginTop: "1em" }}>
         <Box display="flex">
           <Box width="50%">
-            <Typography className={classes.tableFoot}>
+            {/* <Typography className={classes.tableFoot}>
               1-{data.length} of {Math.floor(Math.random() * 100)} results
-            </Typography>
+            </Typography> */}
+            <Pagination count={10} page={page} onChange={handleChange} />
           </Box>
           <Box width="50%" textAlign="right">
             <Typography className={classes.tableFoot}>
