@@ -22,8 +22,13 @@ export default function PageTitle(props) {
   const history = useHistory();
 
   const changeRoute = () => {
-    const route = "/dashboard/home";
+    const route = props.route ? props.route : "/dashboard/home";
     history.push(route);
+
+    // Temporary workaround to allow another function to be passed via onClick prop
+    if (props.onClick !== undefined) {
+      props.onClick.call(this);
+    }
   };
 
   return (
