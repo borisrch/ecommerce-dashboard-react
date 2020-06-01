@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -7,6 +9,7 @@ import { Typography, Paper, IconButton, Button } from "@material-ui/core/";
 import { Refresh, Sort } from "@material-ui/icons";
 
 import OrdersTable from "./OrdersTable";
+import Manage from "./Manage/Manage";
 import PageTitle from "./../Common/PageTitle";
 
 const drawerWidth = 210;
@@ -45,8 +48,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
+export default function Orders(props) {
   const classes = useStyles();
+
+  const [pageControl, setPageControl] = React.useState({
+    manage: false,
+  });
 
   const [lastUpdatedTime, setLastUpdatedTime] = React.useState("N/A");
 
@@ -55,8 +62,18 @@ export default function Orders() {
     setLastUpdatedTime(`${new Date().toLocaleString()}`);
   }, []);
 
-  return (
-    <React.Fragment>
+  const history = useHistory();
+
+  const changeRoute = () => {
+    // const route = "/dashboard/orders/manage";
+    // history.push(route);
+    setPageControl({
+      manage: true,
+    });
+  };
+
+  const OrdersMain = () => {
+    return (
       <Container maxWidth="lg">
         <PageTitle title="Orders" />
         <Paper className={classes.toolbar}>
@@ -70,12 +87,25 @@ export default function Orders() {
               </IconButton>
             </div>
             <div className={classes.action}>
-              <Button>Test</Button>
+              <Button onClick={changeRoute}>Go</Button>
             </div>
           </div>
         </Paper>
+        <Route />
         <OrdersTable />
       </Container>
+    );
+  };
+
+  // TODO: Need to refactor. This is a workaround for Router (since its connected to Tabs, its difficult to hack)
+
+  return (
+    <React.Fragment>
+      {pageControl.manage ? (
+        <Manage pageControl={setPageControl} />
+      ) : (
+        <OrdersMain />
+      )}
     </React.Fragment>
   );
 }
