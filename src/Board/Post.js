@@ -1,45 +1,44 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import CommentIcon from '@material-ui/icons/Comment';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ExpandMoreIcon from '@material-ui/icons/MoreHoriz';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Button from "@material-ui/core/Button";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { red } from "@material-ui/core/colors";
+import CommentIcon from "@material-ui/icons/Comment";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import ExpandMoreIcon from "@material-ui/icons/MoreHoriz";
 
-import getAvatar from '../Common/AnimalAvatars';
+import getAvatar from "../Common/AnimalAvatars";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     // boxShadow: '0 0 1px 0 rgba(0,0,0,.28)',
-    boxShadow: '0 0 11px #eaf0f6',
+    boxShadow: "0 0 11px #eaf0f6",
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   expand: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
-  avatar: {
-  },
+  avatar: {},
   rightIcon: {
     marginLeft: theme.spacing(1),
   },
   button: {
-    marginLeft: 'auto',
-  }
+    marginLeft: "auto",
+  },
 }));
 
 export default function Post(props) {
@@ -49,9 +48,11 @@ export default function Post(props) {
     <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar} src={getAvatar()}>
-
-          </Avatar>
+          <Avatar
+            aria-label="recipe"
+            className={classes.avatar}
+            src={getAvatar()}
+          ></Avatar>
         }
         action={
           <IconButton aria-label="settings">
