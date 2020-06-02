@@ -78,82 +78,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(
-  orderId,
-  created,
-  customer,
-  email,
-  fulfillment,
-  total,
-  status,
-  updated
-) {
-  return {
-    orderId,
-    created,
-    customer,
-    email,
-    fulfillment,
-    total,
-    status,
-    updated,
-  };
-}
-
-const rows = [
-  createData(
-    6,
-    new Date().toLocaleDateString(),
-    "Rick Astley",
-    "rickastley@gmail.com",
-    "Processing",
-    240,
-    "Paid",
-    "Today"
-  ),
-  createData(
-    7,
-    new Date().toLocaleDateString(),
-    "Bob Martin",
-    "bobmartin@live.com",
-    "Confirmed",
-    580,
-    "Dispute",
-    "Today"
-  ),
-  createData(
-    3,
-    new Date().toLocaleDateString(),
-    "Evan Berry",
-    "evanberry@gmail.com",
-    "Packing",
-    1245,
-    "Paid",
-    "Today"
-  ),
-  createData(
-    4,
-    new Date().toLocaleDateString(),
-    "Perry Ortiz",
-    "perryotiz@gmail.com",
-    "Shipped",
-    75,
-    "Paid",
-    "Today"
-  ),
-  createData(
-    5,
-    new Date().toLocaleDateString(),
-    "Tiffany Williams",
-    "verda2014@hotmail.com",
-    "Unfulfilled",
-    2650,
-    "Paid",
-    "Today"
-  ),
-];
-
-export default function SimpleTable() {
+export default function SimpleTable(props) {
   const classes = useStyles();
 
   const [lastUpdatedTime, setLastUpdatedTime] = React.useState("N/A");
@@ -162,7 +87,7 @@ export default function SimpleTable() {
     setLastUpdatedTime(`${new Date().toLocaleString()}`);
   }, []);
 
-  const [data, setData] = React.useState(rows);
+  const [data, setData] = React.useState(props.orders);
 
   /* -1: unsorted/unused
       0: is NOT ascending
@@ -348,7 +273,7 @@ export default function SimpleTable() {
                   {row.orderId}
                 </TableCell>
                 <TableCell align="right">{row.created}</TableCell>
-                <TableCell align="right">{row.customer}</TableCell>
+                <TableCell align="right">{`${row.firstName} ${row.lastName}`}</TableCell>
                 <TableCell align="right">{row.email}</TableCell>
                 <TableCell align="right">
                   <Fulfillment fulfillment={row.fulfillment} />

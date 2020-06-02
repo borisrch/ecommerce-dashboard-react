@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
+import faker from "faker";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -48,6 +49,56 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function createData(
+  orderId,
+  created,
+  firstName,
+  lastName,
+  email,
+  address,
+  city,
+  country,
+  zip,
+  fulfillment,
+  total,
+  status,
+  updated
+) {
+  return {
+    orderId,
+    created,
+    firstName,
+    lastName,
+    email,
+    address,
+    city,
+    country,
+    zip,
+    fulfillment,
+    total,
+    status,
+    updated,
+  };
+}
+
+const ordersData = [
+  createData(
+    Math.floor(Math.random() * 100),
+    new Date().toLocaleDateString(),
+    faker.name.firstName(),
+    faker.name.lastName(),
+    faker.internet.email(),
+    faker.address.streetAddress(),
+    faker.address.city(),
+    faker.address.country(),
+    faker.address.zipCode(),
+    "Processing",
+    faker.commerce.price(),
+    "Paid",
+    "Today"
+  ),
+];
+
 export default function Orders(props) {
   const classes = useStyles();
 
@@ -92,7 +143,7 @@ export default function Orders(props) {
           </div>
         </Paper>
         <Route />
-        <OrdersTable />
+        <OrdersTable orders={ordersData} />
       </Container>
     );
   };
