@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// TODO: Organize scheme to its own repository.
+
 function createData(
   orderId,
   created,
@@ -81,29 +83,41 @@ function createData(
   };
 }
 
-const ordersData = [
-  createData(
-    Math.floor(Math.random() * 100),
-    new Date().toLocaleDateString(),
-    faker.name.firstName(),
-    faker.name.lastName(),
-    faker.internet.email(),
-    faker.address.streetAddress(),
-    faker.address.city(),
-    faker.address.country(),
-    faker.address.zipCode(),
-    "Processing",
-    faker.commerce.price(),
-    "Paid",
-    "Today"
-  ),
-];
+// TODO: State should be retrieved from here.
+
+const populate = (n) => {
+  const data = [];
+  for (let i = 0; i < n; i++) {
+    data.push(
+      createData(
+        Math.floor(Math.random() * 100),
+        faker.date.recent(7).toLocaleDateString(),
+        faker.name.firstName(),
+        faker.name.lastName(),
+        faker.internet.email(),
+        faker.address.streetAddress(),
+        faker.address.city(),
+        faker.address.country(),
+        faker.address.zipCode(),
+        "Processing",
+        faker.commerce.price(),
+        "Paid",
+        "Today"
+      )
+    );
+  }
+
+  return data;
+};
+
+const ordersData = populate(6);
 
 export default function Orders(props) {
   const classes = useStyles();
 
   const [pageControl, setPageControl] = React.useState({
     manage: false,
+    orderDetails: null,
   });
 
   const [lastUpdatedTime, setLastUpdatedTime] = React.useState("N/A");
@@ -112,8 +126,6 @@ export default function Orders(props) {
     // props.dispatch(fetchProducts());
     setLastUpdatedTime(`${new Date().toLocaleString()}`);
   }, []);
-
-  const history = useHistory();
 
   const changeRoute = () => {
     // const route = "/dashboard/orders/manage";
@@ -138,12 +150,12 @@ export default function Orders(props) {
               </IconButton>
             </div>
             <div className={classes.action}>
-              <Button onClick={changeRoute}>Go</Button>
+              <Button>Go</Button>
             </div>
           </div>
         </Paper>
         <Route />
-        <OrdersTable orders={ordersData} />
+        <OrdersTable orders={ordersData} pageControl={setPageControl} />
       </Container>
     );
   };
@@ -153,7 +165,7 @@ export default function Orders(props) {
   return (
     <React.Fragment>
       {pageControl.manage ? (
-        <Manage pageControl={setPageControl} />
+        <Manage pageControl={pageControl} setPageControl={setPageControl} />
       ) : (
         <OrdersMain />
       )}

@@ -267,8 +267,14 @@ export default function SimpleTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((row) => (
-              <TableRow key={row.orderId} className={classes.row}>
+            {data.map((row, index) => (
+              <TableRow
+                key={row.orderId}
+                className={classes.row}
+                onClick={(row) =>
+                  props.pageControl({ manage: true, orderDetails: data[index] })
+                }
+              >
                 <TableCell component="th" scope="row">
                   {row.orderId}
                 </TableCell>
