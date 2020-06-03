@@ -8,10 +8,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import Blue from "@material-ui/core/colors/blueGrey";
 import Chip from "@material-ui/core/Chip";
 import blue from "@material-ui/core/colors/blue";
+import grey from "@material-ui/core/colors/grey";
 
 import { getThemeProps } from "@material-ui/styles";
 import DoneIcon from "@material-ui/icons/Done";
@@ -40,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "ApercuMedium",
     fontSize: "0.875rem",
     color: "#525f7f",
+    padding: theme.spacing(2),
   },
   tableHeadCell: {
     padding: theme.spacing(1),
@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
   },
   row: {
+    backgroundColor: grey[50],
     "&:hover": {
       // backgroundColor: '#f5f5f5',
       backgroundColor: blue[50],
@@ -75,6 +76,9 @@ const useStyles = makeStyles((theme) => ({
   },
   active: {
     color: theme.palette.primary.main,
+  },
+  even: {
+    backgroundColor: "#fff",
   },
 }));
 
@@ -235,7 +239,7 @@ export default function SimpleTable(props) {
                   <Typography className={classes.tableHead}>
                     Order ID
                   </Typography>
-                  <IconButton style={{ marginLeft: "2px" }} onClick={sortById}>
+                  <IconButton style={{ marginLeft: "1px" }} onClick={sortById}>
                     <UnfoldMoreIcon
                       fontSize="small"
                       className={clsx(sortData.id > -1 && classes.active)}
@@ -270,7 +274,7 @@ export default function SimpleTable(props) {
             {data.map((row, index) => (
               <TableRow
                 key={row.orderId}
-                className={classes.row}
+                className={clsx(classes.row, index % 2 && classes.even)}
                 onClick={(row) =>
                   props.pageControl({ manage: true, orderDetails: data[index] })
                 }
