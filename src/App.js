@@ -124,6 +124,11 @@ const theme = createMuiTheme({
         },
       },
     },
+    MuiTableCell: {
+      root: {
+        borderBottom: "none",
+      },
+    },
   },
 });
 
