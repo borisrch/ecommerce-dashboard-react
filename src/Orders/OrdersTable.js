@@ -39,7 +39,9 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "ApercuMedium",
     fontSize: "0.875rem",
     color: "#525f7f",
-    padding: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   tableHeadCell: {
     padding: theme.spacing(1),
