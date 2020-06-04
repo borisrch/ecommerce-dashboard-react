@@ -147,7 +147,7 @@ export default function New(props) {
           />
           <TextField
             id="customer-country"
-            label="City"
+            label="Country"
             defaultValue={country}
             InputProps={{
               readOnly: true,
