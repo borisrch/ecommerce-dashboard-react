@@ -70,6 +70,11 @@ export default function New(props) {
     updated,
   } = props.pageControl.orderDetails;
 
+  const handleNext = () => {
+    // Send RESTful call to update Order state on backend.
+    props.handleNext();
+  };
+
   return (
     <Box>
       <form className={classes.root}>
@@ -161,6 +166,7 @@ export default function New(props) {
             variant="contained"
             color="primary"
             className={classes.button}
+            onClick={handleNext}
           >
             Begin Work
             <PostAdd className={classes.rightIcon} />
