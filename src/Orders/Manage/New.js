@@ -14,6 +14,8 @@ import {
 import DoneIcon from "@material-ui/icons/Done";
 import PostAdd from "@material-ui/icons/PostAdd";
 
+import Metadata from "./Metadata";
+
 const useStyles = makeStyles((theme) => ({
   textfield: {
     marginRight: theme.spacing(2),
@@ -71,44 +73,7 @@ export default function New(props) {
   return (
     <Box>
       <form className={classes.root}>
-        <Typography variant="h6" className={classes.title} gutterBottom>
-          Order Metadata
-        </Typography>
-        <Box>
-          <TextField
-            id="order-id"
-            label="Unique ID"
-            defaultValue={orderId}
-            InputProps={{
-              readOnly: true,
-            }}
-            disabled
-            variant="outlined"
-            className={classes.textfield}
-          />
-          <TextField
-            id="state"
-            label="State"
-            defaultValue="New"
-            InputProps={{
-              readOnly: true,
-            }}
-            disabled
-            variant="outlined"
-            className={classes.textfield}
-          />
-          <TextField
-            id="state"
-            label="Order Placed"
-            defaultValue={created}
-            InputProps={{
-              readOnly: true,
-            }}
-            disabled
-            variant="outlined"
-            className={classes.textfield}
-          />
-        </Box>
+        <Metadata pageControl={props.pageControl} />
         <Typography variant="h6" className={classes.subtitle} gutterBottom>
           Customer Information
         </Typography>
@@ -197,7 +162,7 @@ export default function New(props) {
             color="primary"
             className={classes.button}
           >
-            Begin Processing
+            Begin Work
             <PostAdd className={classes.rightIcon} />
           </Button>
         </Box>
