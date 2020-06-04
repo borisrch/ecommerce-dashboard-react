@@ -90,7 +90,7 @@ const populate = (n) => {
   for (let i = 0; i < n; i++) {
     data.push(
       createData(
-        Math.floor(Math.random() * 100),
+        i,
         faker.date.recent(7).toLocaleDateString(),
         faker.name.firstName(),
         faker.name.lastName(),
@@ -110,7 +110,7 @@ const populate = (n) => {
   return data;
 };
 
-const ordersData = populate(6);
+const ordersData = populate(8);
 
 export default function Orders(props) {
   const classes = useStyles();
