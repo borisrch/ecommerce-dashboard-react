@@ -87,10 +87,19 @@ function createData(
 
 const populate = (n) => {
   const data = [];
+  const set = new Set();
   for (let i = 0; i < n; i++) {
+    let random = faker.random.number(100);
+
+    while (set.has(random)) {
+      random = faker.random.number(100);
+    }
+
+    set.add(random);
+
     data.push(
       createData(
-        i,
+        random,
         faker.date.recent(7).toLocaleDateString(),
         faker.name.firstName(),
         faker.name.lastName(),
