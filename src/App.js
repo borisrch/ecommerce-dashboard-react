@@ -27,6 +27,8 @@ import Inventory from "./Inventory/Inventory";
 import Settings from "./Settings/Settings";
 import Board from "./Board/Board";
 import Login from "./Login/Login";
+import Team from "./Team/Team";
+
 import PrivateRoute from "./Common/PrivateRoute";
 import getAvatar from "./Common/AnimalAvatars";
 
@@ -199,6 +201,14 @@ function App(props) {
                       className={classes.tab}
                     />
                     <Tab
+                      label="Team"
+                      value="/dashboard/team"
+                      component={Link}
+                      to="/dashboard/team"
+                      disableRipple
+                      className={classes.tab}
+                    />
+                    <Tab
                       label="Board"
                       value="/dashboard/board"
                       component={Link}
@@ -246,6 +256,11 @@ function App(props) {
                     path="/dashboard/home"
                     authed={isAuthenticated}
                     component={Home}
+                  />
+                  <PrivateRoute
+                    path="/dashboard/team"
+                    authed={isAuthenticated}
+                    component={Team}
                   />
                 </Switch>
               </Fragment>
