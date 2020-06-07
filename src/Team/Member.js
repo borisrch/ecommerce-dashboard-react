@@ -66,6 +66,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Member(props) {
   const classes = useStyles();
 
+  const handleClick = () => {
+    if (props.openModal) {
+      props.openModal(props.member);
+    }
+  };
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -77,7 +83,7 @@ export default function Member(props) {
           ></Avatar>
         }
         action={
-          <IconButton aria-label="settings">
+          <IconButton aria-label="settings" onClick={handleClick}>
             <ExpandMoreIcon />
           </IconButton>
         }
