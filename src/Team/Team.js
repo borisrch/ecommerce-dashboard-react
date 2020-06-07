@@ -12,6 +12,9 @@ import {
   IconButton,
   Grid,
   Avatar,
+  Modal,
+  Backdrop,
+  Fade,
 } from "@material-ui/core";
 
 import Table from "@material-ui/core/Table";
@@ -34,6 +37,7 @@ import UnfoldMoreIcon from "@material-ui/icons/UnfoldMore";
 
 import PageTitle from "../Common/PageTitle";
 import Member from "./Member";
+import Profile from "./Profile";
 
 const useStyles = makeStyles((theme) => ({
   menuText: {
@@ -94,6 +98,11 @@ const useStyles = makeStyles((theme) => ({
   tableHeadRow: {
     backgroundColor: grey[50],
   },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 
 const populate = (n = 1) => {
@@ -116,16 +125,42 @@ const populate = (n = 1) => {
   return members;
 };
 
+const members = populate(7);
+
 export default function Team() {
   const classes = useStyles();
+
+  const [modal, setModal] = React.useState({
+    open: false,
+    member: null,
+  });
+
+  const showModal = (member) => {
+    setModal({
+      open: true,
+      member,
+    });
+  };
+
+  const handleClose = () => {
+    setModal({
+      ...modal,
+      open: false,
+    });
+  };
 
   const [showGrid, setShowGrid] = React.useState(true);
   const [sortBy, setSortBy] = React.useState("All");
 
-  const members = populate(7);
-
   const handleChange = (event) => {
     setSortBy(event.target.value);
+  };
+
+  const handleModalClose = () => {
+    setModal({
+      ...modal,
+      open: false,
+    });
   };
 
   function DataDisplay() {
@@ -140,7 +175,7 @@ export default function Team() {
         >
           {members.map((member) => (
             <Grid item xs={3} key={member.id}>
-              <Member member={member} />
+              <Member member={member} openModal={showModal} />
             </Grid>
           ))}
         </Grid>
@@ -240,26 +275,43 @@ export default function Team() {
             <SearchIcon />
           </IconButton>
         </Box>
-        <Box
-          display="flex"
-          flexGrow={1}
-          justifyContent="flex-end"
-          alignItems="center"
-        >
-          <Typography className={classes.menuText}>Sort by:</Typography>
-          <Select
-            className={classes.select}
-            value={sortBy}
-            onChange={handleChange}
-            IconComponent={ExpandMoreIcon}
+
+        {showGrid && (
+          <Box
+            display="flex"
+            flexGrow={1}
+            justifyContent="flex-end"
+            alignItems="center"
           >
-            <MenuItem value={"All"}>All</MenuItem>
-            <MenuItem value={"Name"}>Name</MenuItem>
-            <MenuItem value={"Role"}>Role</MenuItem>
-          </Select>
-        </Box>
+            <Typography className={classes.menuText}>Sort by:</Typography>
+            <Select
+              className={classes.select}
+              value={sortBy}
+              onChange={handleChange}
+              IconComponent={ExpandMoreIcon}
+            >
+              <MenuItem value={"All"}>All</MenuItem>
+              <MenuItem value={"Name"}>Name</MenuItem>
+              <MenuItem value={"Role"}>Role</MenuItem>
+            </Select>
+          </Box>
+        )}
       </Box>
       <DataDisplay />
+      <Modal
+        open={modal.open}
+        onClose={handleModalClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+        className={classes.modal}
+      >
+        <div style={{ outline: "none" }}>
+          <Profile member={modal.member} />
+        </div>
+      </Modal>
     </Container>
   );
 }
