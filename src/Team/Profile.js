@@ -8,6 +8,7 @@ import {
   Divider,
   TextField,
   Grid,
+  Button,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   description: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  resize: {
+    fontSize: "0.875em",
   },
 }));
 
@@ -71,8 +75,43 @@ export default function Profiles(props) {
         fullWidth
         defaultValue={description}
         className={classes.description}
+        InputProps={{
+          classes: {
+            input: classes.resize,
+          },
+        }}
       />
-      <Grid></Grid>
+      <Grid container spacing={1}>
+        <Grid item xs={6}>
+          <TextField
+            label="Email"
+            defaultValue={email}
+            fullWidth
+            InputProps={{
+              classes: {
+                input: classes.resize,
+              },
+            }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            label="Phone"
+            defaultValue={phone}
+            fullWidth
+            InputProps={{
+              classes: {
+                input: classes.resize,
+              },
+            }}
+          />
+        </Grid>
+      </Grid>
+      {/* <Box display="flex" justifyContent="flex-end">
+        <Button variant="contained" color="primary" disableElevation>
+          Save
+        </Button>
+      </Box> */}
     </Box>
   );
 }
