@@ -103,6 +103,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  active: {
+    color: theme.palette.primary.main,
+  },
 }));
 
 const populate = (n = 1) => {
@@ -129,6 +132,89 @@ const members = populate(7);
 
 export default function Team() {
   const classes = useStyles();
+
+  const [data, setData] = React.useState(members);
+
+  /* -1: unsorted/unused
+      0: is NOT ascending
+      1: is ascending
+  */
+  const [sortData, setSortData] = React.useState({
+    name: -1,
+    role: -1,
+    email: -1,
+  });
+
+  const sortByAttribute = (attribute) => {
+    const dataset = [...data];
+
+    if (sortData[attribute] < 1) {
+      dataset.sort(function (a, b) {
+        const al = a[attribute].toLowerCase();
+        const bl = b[attribute].toLowerCase();
+        // No swap if b is greater (ascending).
+        if (al < bl) {
+          return -1;
+        }
+        if (al > bl) {
+          return 1;
+        }
+        return 0;
+      });
+      const sortDataObj = {
+        name: -1,
+        role: -1,
+        email: -1,
+      };
+      sortDataObj[attribute] = 1;
+      setSortData(sortDataObj);
+    } else {
+      dataset.reverse();
+      const sortDataObj = {
+        name: -1,
+        role: -1,
+        email: -1,
+      };
+      sortDataObj[attribute] = 0;
+      setSortData(sortDataObj);
+    }
+    setData(dataset);
+  };
+
+  const sortByName = () => {
+    const dataset = [...data];
+    // attribute is unsorted.
+    if (sortData.name < 1) {
+      // alphabetic sort
+      dataset.sort(function (a, b) {
+        const al = a.firstName.toLowerCase();
+        const bl = b.firstName.toLowerCase();
+        // No swap if b is greater (ascending).
+        if (al < bl) {
+          return -1;
+        }
+        if (al > bl) {
+          return 1;
+        }
+        return 0;
+      });
+      setSortData({
+        name: -1,
+        role: -1,
+        email: -1,
+        name: 1,
+      });
+    } else {
+      dataset.reverse();
+      setSortData({
+        name: -1,
+        role: -1,
+        email: -1,
+        name: 0,
+      });
+    }
+    setData(dataset);
+  };
 
   const [modal, setModal] = React.useState({
     open: false,
@@ -173,7 +259,7 @@ export default function Team() {
           justify="center"
           alignItems="flex-start"
         >
-          {members.map((member) => (
+          {data.map((member) => (
             <Grid item xs={3} key={member.id}>
               <Member member={member} openModal={showModal} />
             </Grid>
@@ -199,19 +285,52 @@ export default function Team() {
                     alignItems="center"
                   >
                     <Typography className={classes.tableHead}>Name</Typography>
-                    <IconButton style={{ marginLeft: "1px" }}>
+                    <IconButton
+                      style={{ marginLeft: "1px" }}
+                      onClick={sortByName}
+                    >
                       <UnfoldMoreIcon
                         fontSize="small"
-                        //   className={clsx(sortData.id > -1 && classes.active)}
+                        className={clsx(sortData.name > -1 && classes.active)}
                       />
                     </IconButton>
                   </Box>
                 </TableCell>
-                <TableCell align="left" className={classes.tableHead}>
-                  Role
+                <TableCell align="left" className={classes.tableHeadCell}>
+                  <Box
+                    display="flex"
+                    justifyContent="flex-start"
+                    alignItems="center"
+                  >
+                    <Typography className={classes.tableHead}>Role</Typography>
+                    <IconButton
+                      style={{ marginLeft: "1px" }}
+                      onClick={() => sortByAttribute("role")}
+                    >
+                      <UnfoldMoreIcon
+                        fontSize="small"
+                        className={clsx(sortData.role > -1 && classes.active)}
+                      />
+                    </IconButton>
+                  </Box>
                 </TableCell>
-                <TableCell align="left" className={classes.tableHead}>
-                  Email
+                <TableCell align="left" className={classes.tableHeadCell}>
+                  <Box
+                    display="flex"
+                    justifyContent="flex-start"
+                    alignItems="center"
+                  >
+                    <Typography className={classes.tableHead}>Email</Typography>
+                    <IconButton
+                      style={{ marginLeft: "1px" }}
+                      onClick={() => sortByAttribute("email")}
+                    >
+                      <UnfoldMoreIcon
+                        fontSize="small"
+                        className={clsx(sortData.email > -1 && classes.active)}
+                      />
+                    </IconButton>
+                  </Box>
                 </TableCell>
                 <TableCell align="left" className={classes.tableHead}>
                   Phone
@@ -223,7 +342,7 @@ export default function Team() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {members.map((member) => (
+              {data.map((member) => (
                 <TableRow key={member.id} className={classes.tableRow}>
                   <TableCell align="right">
                     <Avatar
@@ -239,7 +358,10 @@ export default function Team() {
                   <TableCell align="left">{member.email}</TableCell>
                   <TableCell align="left">{member.phone}</TableCell>
                   <TableCell align="left">
-                    <IconButton aria-label="settings">
+                    <IconButton
+                      aria-label="settings"
+                      onClick={() => showModal(member)}
+                    >
                       <MoreIcon />
                     </IconButton>
                   </TableCell>
