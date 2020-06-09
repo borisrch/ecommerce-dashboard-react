@@ -274,10 +274,7 @@ export default function Team() {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow className={classes.tableHeadRow}>
-                <TableCell
-                  align="right"
-                  className={classes.tableHeadAvatar}
-                ></TableCell>
+                <TableCell align="right" className={classes.tableHeadAvatar} />
                 <TableCell align="left" className={classes.tableHeadCell}>
                   <Box
                     display="flex"
@@ -335,10 +332,7 @@ export default function Team() {
                 <TableCell align="left" className={classes.tableHead}>
                   Phone
                 </TableCell>
-                <TableCell
-                  align="left"
-                  className={classes.tableHead}
-                ></TableCell>
+                <TableCell align="left" className={classes.tableHead} />
               </TableRow>
             </TableHead>
             <TableBody>
