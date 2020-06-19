@@ -236,10 +236,24 @@ export default function Team() {
   };
 
   const [showGrid, setShowGrid] = React.useState(true);
-  const [sortBy, setSortBy] = React.useState("All");
+  const [sortBy, setSortBy] = React.useState("all");
 
   const handleChange = (event) => {
     setSortBy(event.target.value);
+
+    switch (event.target.value) {
+      case "name":
+        sortByName();
+        return;
+      case "role":
+        sortByAttribute("role");
+        return;
+      case "email":
+        sortByAttribute("email");
+        return;
+      default:
+        return;
+    }
   };
 
   const handleModalClose = () => {
@@ -406,9 +420,10 @@ export default function Team() {
               onChange={handleChange}
               IconComponent={ExpandMoreIcon}
             >
-              <MenuItem value={"All"}>All</MenuItem>
-              <MenuItem value={"Name"}>Name</MenuItem>
-              <MenuItem value={"Role"}>Role</MenuItem>
+              <MenuItem value={"all"}>All</MenuItem>
+              <MenuItem value={"name"}>Name</MenuItem>
+              <MenuItem value={"role"}>Role</MenuItem>
+              <MenuItem value={"email"}>Email</MenuItem>
             </Select>
           </Box>
         )}
