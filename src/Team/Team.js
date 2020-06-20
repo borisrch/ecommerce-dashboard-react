@@ -62,7 +62,11 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     boxShadow: "0 0 11px #eaf0f6",
+    borderRadius: "4px",
+    overflow: "hidden",
+    border: "1px solid #eaf0f6",
   },
+  table: {},
   tableHead: {
     fontFamily: "ApercuMedium",
     fontSize: "0.875rem",
@@ -70,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2),
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    backgroundColor: grey[50],
+    // backgroundColor: grey[50],
   },
   tableHeadAvatar: {
     width: "50px",
@@ -84,19 +88,23 @@ const useStyles = makeStyles((theme) => ({
   tableRow: {
     borderColor: "#fff",
     borderStyle: "solid",
-    borderLeftWidth: "4px",
+    borderLeftWidth: "3px",
     borderBottomWidth: "0px",
     borderTopWidth: "0px",
-    borderRightWidth: "0px",
+    borderRightWidth: "3px",
     "&:hover": {
       borderColor: theme.palette.primary.light,
       borderStyle: "solid",
-      borderLeftWidth: "4px",
+      borderLeftWidth: "3px",
       backgroundColor: blue[50],
+      borderRightColor: blue[50],
     },
   },
   tableHeadRow: {
-    backgroundColor: grey[50],
+    backgroundColor: "#fff",
+    borderColor: "#fff",
+    borderStyle: "solid",
+    borderLeftWidth: "3px",
   },
   modal: {
     display: "flex",
