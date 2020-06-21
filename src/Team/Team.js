@@ -376,6 +376,7 @@ export default function Team() {
                   <TableCell align="left">
                     <IconButton
                       aria-label="settings"
+                      size="small"
                       onClick={() => showModal(member)}
                     >
                       <MoreIcon />
