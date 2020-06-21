@@ -4,10 +4,18 @@ import { Route, Switch } from "react-router-dom";
 import faker from "faker";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 
-import { Typography, Paper, IconButton, Button } from "@material-ui/core/";
-import { Refresh, Sort } from "@material-ui/icons";
+import {
+  Typography,
+  Paper,
+  IconButton,
+  Button,
+  Container,
+  Box,
+} from "@material-ui/core/";
+import RefreshIcon from "@material-ui/icons/Refresh";
+import SortIcon from "@material-ui/icons/Sort";
+import SearchIcon from "@material-ui/icons/Search";
 
 import OrdersTable from "./OrdersTable";
 import Manage from "./Manage/Manage";
@@ -46,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     padding: 0,
     color: "rgb(112, 117, 122)",
+  },
+  button: {
+    margin: theme.spacing(1),
   },
 }));
 
@@ -148,21 +159,17 @@ export default function Orders(props) {
     return (
       <Container maxWidth="lg">
         <PageTitle title="Orders" />
-        <Paper className={classes.toolbar}>
-          <div style={{ display: "flex" }}>
-            <div>
-              <IconButton className={classes.button} color="primary">
-                <Sort />
-              </IconButton>
-              <IconButton className={classes.button}>
-                <Refresh />
-              </IconButton>
-            </div>
-            <div className={classes.action}>
-              <Button>Go</Button>
-            </div>
-          </div>
-        </Paper>
+        <Box display="flex" flexGrow={1}>
+          <IconButton className={classes.button}>
+            <SortIcon />
+          </IconButton>
+          <IconButton className={classes.button}>
+            <RefreshIcon />
+          </IconButton>
+          <IconButton className={classes.button}>
+            <SearchIcon />
+          </IconButton>
+        </Box>
         <Route />
         <OrdersTable orders={ordersData} pageControl={setPageControl} />
       </Container>
