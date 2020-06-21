@@ -20,17 +20,17 @@ import ConfirmedIcon from "@material-ui/icons/AssignmentLate";
 import ShippingIcon from "@material-ui/icons/LocalShipping";
 import PackingIcon from "@material-ui/icons/MoveToInbox";
 import UnfoldMoreIcon from "@material-ui/icons/UnfoldMore";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 
 import { Typography, Box, IconButton } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    marginTop: theme.spacing(3),
-    overflowX: "auto",
-    // boxShadow: '0 0 1px 0 rgba(0,0,0,.22)',
     boxShadow: "0 0 11px #eaf0f6",
+    borderRadius: "4px",
+    overflow: "hidden",
+    border: "1px solid #eaf0f6",
   },
   table: {
     minWidth: 650,
@@ -46,6 +46,12 @@ const useStyles = makeStyles((theme) => ({
   tableHeadCell: {
     padding: theme.spacing(1),
   },
+  tableHeadRow: {
+    backgroundColor: "#fff",
+    borderColor: "#fff",
+    borderStyle: "solid",
+    borderLeftWidth: "3px",
+  },
   tableFoot: {
     fontFamily: "ApercuMedium",
     fontSize: "0.875rem",
@@ -60,11 +66,19 @@ const useStyles = makeStyles((theme) => ({
   input: {
     display: "none",
   },
-  row: {
-    backgroundColor: grey[50],
+  tableRow: {
+    borderColor: "#fff",
+    borderStyle: "solid",
+    borderLeftWidth: "3px",
+    borderBottomWidth: "0px",
+    borderTopWidth: "0px",
+    borderRightWidth: "3px",
     "&:hover": {
-      // backgroundColor: '#f5f5f5',
+      borderColor: theme.palette.primary.light,
+      borderStyle: "solid",
+      borderLeftWidth: "3px",
       backgroundColor: blue[50],
+      borderRightColor: blue[50],
       cursor: "pointer",
     },
   },
@@ -231,7 +245,7 @@ export default function SimpleTable(props) {
       <Paper className={classes.root}>
         <Table className={classes.table}>
           <TableHead>
-            <TableRow>
+            <TableRow className={classes.tableHeadRow}>
               <TableCell className={classes.tableHeadCell}>
                 <Box
                   display="flex"
@@ -249,34 +263,35 @@ export default function SimpleTable(props) {
                   </IconButton>
                 </Box>
               </TableCell>
-              <TableCell className={classes.tableHead} align="right">
+              <TableCell className={classes.tableHead} align="left">
                 Created
               </TableCell>
-              <TableCell className={classes.tableHead} align="right">
+              <TableCell className={classes.tableHead} align="left">
                 Customer
               </TableCell>
-              <TableCell className={classes.tableHead} align="right">
+              <TableCell className={classes.tableHead} align="left">
                 Email
               </TableCell>
-              <TableCell className={classes.tableHead} align="right">
+              <TableCell className={classes.tableHead} align="left">
                 Fulfillment
               </TableCell>
-              <TableCell className={classes.tableHead} align="right">
+              <TableCell className={classes.tableHead} align="left">
                 Total
               </TableCell>
-              <TableCell className={classes.tableHead} align="right">
+              <TableCell className={classes.tableHead} align="left">
                 Status
               </TableCell>
-              <TableCell className={classes.tableHead} align="right">
+              <TableCell className={classes.tableHead} align="left">
                 Last Updated
               </TableCell>
+              <TableCell className={classes.tableHead} align="left" />
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((row, index) => (
               <TableRow
                 key={row.orderId}
-                className={clsx(classes.row, index % 2 && classes.even)}
+                className={classes.tableRow}
                 onClick={(row) =>
                   props.pageControl({ manage: true, orderDetails: data[index] })
                 }
@@ -284,17 +299,22 @@ export default function SimpleTable(props) {
                 <TableCell component="th" scope="row">
                   {row.orderId}
                 </TableCell>
-                <TableCell align="right">{row.created}</TableCell>
-                <TableCell align="right">{`${row.firstName} ${row.lastName}`}</TableCell>
-                <TableCell align="right">{row.email}</TableCell>
-                <TableCell align="right">
+                <TableCell align="left">{row.created}</TableCell>
+                <TableCell align="left">{`${row.firstName} ${row.lastName}`}</TableCell>
+                <TableCell align="left">{row.email}</TableCell>
+                <TableCell align="left">
                   <Fulfillment fulfillment={row.fulfillment} />
                 </TableCell>
-                <TableCell align="right">{row.total}</TableCell>
-                <TableCell align="right">
+                <TableCell align="left">{row.total}</TableCell>
+                <TableCell align="left">
                   <StatusChip status={row.status} />
                 </TableCell>
-                <TableCell align="right">{row.updated}</TableCell>
+                <TableCell align="left">{row.updated}</TableCell>
+                <TableCell align="left">
+                  <IconButton size="small" aria-label="settings">
+                    <KeyboardArrowRightIcon />
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
