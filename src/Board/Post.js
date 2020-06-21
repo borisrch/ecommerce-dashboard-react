@@ -19,7 +19,7 @@ import getAvatar from "../Common/AnimalAvatars";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    // boxShadow: '0 0 1px 0 rgba(0,0,0,.28)',
+    border: "1px solid #eaf0f6",
     boxShadow: "0 0 11px #eaf0f6",
   },
   media: {
