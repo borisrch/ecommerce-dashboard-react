@@ -12,10 +12,13 @@ import {
   Button,
   Container,
   Box,
+  Tooltip,
 } from "@material-ui/core/";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import SortIcon from "@material-ui/icons/Sort";
 import SearchIcon from "@material-ui/icons/Search";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+import blue from "@material-ui/core/colors/blue";
 
 import OrdersTable from "./OrdersTable";
 import Manage from "./Manage/Manage";
@@ -55,8 +58,22 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     color: "rgb(112, 117, 122)",
   },
-  button: {
+  iconButton: {
     margin: theme.spacing(1),
+  },
+  button: {
+    backgroundColor: blue[100],
+    // margin: theme.spacing(1),
+    borderRadius: "30px",
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      "& $icon": {
+        color: "white",
+      },
+    },
+  },
+  icon: {
+    color: theme.palette.primary.main,
   },
 }));
 
@@ -160,15 +177,33 @@ export default function Orders(props) {
       <Container maxWidth="lg">
         <PageTitle title="Orders" />
         <Box display="flex" flexGrow={1}>
-          <IconButton className={classes.button}>
-            <SortIcon />
-          </IconButton>
-          <IconButton className={classes.button}>
-            <RefreshIcon />
-          </IconButton>
-          <IconButton className={classes.button}>
-            <SearchIcon />
-          </IconButton>
+          <Tooltip title="Filter" placement="top">
+            <IconButton className={classes.iconButton}>
+              <SortIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Refresh" placement="top">
+            <IconButton className={classes.iconButton}>
+              <RefreshIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Search" placement="top">
+            <IconButton className={classes.iconButton}>
+              <SearchIcon />
+            </IconButton>
+          </Tooltip>
+          <Box
+            display="flex"
+            flexGrow={1}
+            justifyContent="flex-end"
+            alignItems="center"
+          >
+            <Tooltip title="Create Purchase Order" placement="top">
+              <Button className={classes.button} color="primary">
+                <PlaylistAddIcon className={classes.icon} />
+              </Button>
+            </Tooltip>
+          </Box>
         </Box>
         <Route />
         <OrdersTable orders={ordersData} pageControl={setPageControl} />
