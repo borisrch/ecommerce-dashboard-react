@@ -22,6 +22,7 @@ import blue from "@material-ui/core/colors/blue";
 
 import OrdersTable from "./OrdersTable";
 import Manage from "./Manage/Manage";
+import PurchaseOrder from "./PurchaseOrder";
 import PageTitle from "./../Common/PageTitle";
 
 const drawerWidth = 210;
@@ -155,7 +156,18 @@ export default function Orders(props) {
   const [pageControl, setPageControl] = React.useState({
     manage: false,
     orderDetails: null,
+    purchaseOrder: false,
+    root: true,
   });
+
+  const openPurchaseOrder = () => {
+    setPageControl({
+      manage: false,
+      orderDetails: null,
+      purchaseOrder: true,
+      root: false,
+    });
+  };
 
   const [lastUpdatedTime, setLastUpdatedTime] = React.useState("N/A");
 
@@ -163,14 +175,6 @@ export default function Orders(props) {
     // props.dispatch(fetchProducts());
     setLastUpdatedTime(`${new Date().toLocaleString()}`);
   }, []);
-
-  const changeRoute = () => {
-    // const route = "/dashboard/orders/manage";
-    // history.push(route);
-    setPageControl({
-      manage: true,
-    });
-  };
 
   const OrdersMain = () => {
     return (
@@ -199,7 +203,11 @@ export default function Orders(props) {
             alignItems="center"
           >
             <Tooltip title="Create Purchase Order" placement="top">
-              <Button className={classes.button} color="primary">
+              <Button
+                className={classes.button}
+                color="primary"
+                onClick={openPurchaseOrder}
+              >
                 <PlaylistAddIcon className={classes.icon} />
               </Button>
             </Tooltip>
@@ -215,10 +223,15 @@ export default function Orders(props) {
 
   return (
     <React.Fragment>
-      {pageControl.manage ? (
+      {pageControl.manage && (
         <Manage pageControl={pageControl} setPageControl={setPageControl} />
-      ) : (
-        <OrdersMain />
+      )}
+      {pageControl.root && <OrdersMain />}
+      {pageControl.purchaseOrder && (
+        <PurchaseOrder
+          pageControl={pageControl}
+          setPageControl={setPageControl}
+        />
       )}
     </React.Fragment>
   );
