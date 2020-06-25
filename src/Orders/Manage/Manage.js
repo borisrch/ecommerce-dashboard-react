@@ -34,7 +34,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ["New", "Active", "Confirmed", "Packing", "Shipping", "Received"];
+  return [
+    "New",
+    "Active",
+    "Inventory",
+    "Package",
+    "Approve",
+    "Fulfilled",
+    "Delivered",
+  ];
 }
 
 export default function Manage(props) {
@@ -58,6 +66,8 @@ export default function Manage(props) {
   const quit = () => {
     props.setPageControl({
       manage: false,
+      root: true,
+      purchaseOrder: false,
     });
   };
 
