@@ -293,7 +293,12 @@ export default function SimpleTable(props) {
                 key={row.orderId}
                 className={classes.tableRow}
                 onClick={(row) =>
-                  props.pageControl({ manage: true, orderDetails: data[index] })
+                  props.pageControl({
+                    manage: true,
+                    orderDetails: data[index],
+                    root: false,
+                    purchaseOrder: false,
+                  })
                 }
               >
                 <TableCell component="th" scope="row">
