@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import UseAnimations from "react-useanimations";
 
 import {
   Typography,
@@ -24,8 +25,49 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    boxShadow: "0 20px 60px -2px rgba(27,33,58,.4)",
     padding: theme.spacing(2, 4, 3),
+    outline: "none",
+    borderRadius: "8px",
+    maxWidth: "450px",
+  },
+  title: {
+    fontFamily: "ApercuMedium",
+    fontSize: "1.5em",
+    marginLeft: theme.spacing(2),
+    color: "#b71c1c",
+  },
+  icon: {
+    color: "#b71c1c",
+    marginBottom: "-4px",
+  },
+  circle: {
+    backgroundColor: "#ffcdd2",
+    width: "64px",
+    height: "64px",
+    borderRadius: "50%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    marginTop: theme.spacing(2),
+  },
+  actionBox: {
+    marginTop: theme.spacing(4),
+  },
+  abandon: {
+    marginLeft: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    backgroundColor: "#ffcdd2",
+    color: "#b71c1c",
+    // margin: theme.spacing(1),
+    borderRadius: "30px",
+    "&:hover": {
+      backgroundColor: "#b71c1c",
+      color: "white",
+    },
   },
 }));
 
@@ -70,17 +112,34 @@ export default function PurchaseOrder(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <Typography>Abandon Purchase Order?</Typography>
-            <Typography>
-              Leaving will return you to the Orders page. You will lose the
+            <Box display="flex" alignItems="center">
+              <div className={classes.circle}>
+                <UseAnimations
+                  className={classes.icon}
+                  animationKey="alertCircle"
+                  size={56}
+                />
+              </div>
+              <Typography className={classes.title}>
+                Abandon Purchase Order
+              </Typography>
+            </Box>
+            <Typography className={classes.text} variant="subtitle2">
+              Leaving will return you to the Orders page. You will lose all
               progress on creating your Purchase Order.
             </Typography>
-            <Typography>
+            <Typography className={classes.text} variant="subtitle2">
               You will have to start over to create new Purchase Order.
             </Typography>
-            <Box display="flex" justifyContent="flex-end">
-              <Button>Cancel</Button>
-              <Button onClick={quit}>Leave</Button>
+            <Box
+              display="flex"
+              justifyContent="flex-end"
+              className={classes.actionBox}
+            >
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button onClick={quit} className={classes.abandon}>
+                Abandon
+              </Button>
             </Box>
           </div>
         </Fade>
