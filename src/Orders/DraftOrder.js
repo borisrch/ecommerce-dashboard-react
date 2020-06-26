@@ -1,27 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import UseAnimations from "react-useanimations";
 
-import {
-  Typography,
-  Paper,
-  IconButton,
-  Button,
-  Container,
-  Box,
-  Tooltip,
-  Modal,
-  Fade,
-  Backdrop,
-} from "@material-ui/core/";
+import { Container } from "@material-ui/core/";
 
 import PageTitle from "../Common/PageTitle";
 import WarningModal from "../Common/WarningModal";
-import { lorem } from "faker";
 
 const useStyles = makeStyles((theme) => ({}));
 
-export default function PurchaseOrder(props) {
+export default function DraftOrder(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -37,17 +24,17 @@ export default function PurchaseOrder(props) {
     props.setPageControl({
       manage: false,
       orderDetails: null,
-      purchaseOrder: false,
+      draftOrder: false,
       root: true,
     });
   };
 
   const modalDetails = {
     animationKey: "alertCircle",
-    title: "Modal Title",
+    title: "Abandon Draft Order",
     subtitle: [
-      "Leaving will return you to the Orders page. You will lose all progress on creating your Purchase Order.",
-      "You will have to start over to create new Purchase Order.",
+      "Leaving will return you to the Orders page. You will lose all progress on creating your Draft Order.",
+      "You will have to start over to create new Draft Order.",
     ],
     action: "Abandon",
   };
@@ -55,7 +42,7 @@ export default function PurchaseOrder(props) {
   return (
     <Container maxWidth="lg">
       <PageTitle
-        title="Orders / Create Purchase Order"
+        title="Orders / Create Draft Order"
         route="/dashboard/orders"
         onClick={quitWarning}
       />

@@ -22,7 +22,7 @@ import blue from "@material-ui/core/colors/blue";
 
 import OrdersTable from "./OrdersTable";
 import Manage from "./Manage/Manage";
-import PurchaseOrder from "./PurchaseOrder";
+import DraftOrder from "./DraftOrder";
 import PageTitle from "./../Common/PageTitle";
 
 const drawerWidth = 210;
@@ -156,15 +156,15 @@ export default function Orders(props) {
   const [pageControl, setPageControl] = React.useState({
     manage: false,
     orderDetails: null,
-    purchaseOrder: false,
+    draftOrder: false,
     root: true,
   });
 
-  const openPurchaseOrder = () => {
+  const openDraftOrder = () => {
     setPageControl({
       manage: false,
       orderDetails: null,
-      purchaseOrder: true,
+      draftOrder: true,
       root: false,
     });
   };
@@ -206,7 +206,7 @@ export default function Orders(props) {
               <Button
                 className={classes.button}
                 color="primary"
-                onClick={openPurchaseOrder}
+                onClick={openDraftOrder}
               >
                 <PlaylistAddIcon className={classes.icon} />
               </Button>
@@ -227,11 +227,8 @@ export default function Orders(props) {
         <Manage pageControl={pageControl} setPageControl={setPageControl} />
       )}
       {pageControl.root && <OrdersMain />}
-      {pageControl.purchaseOrder && (
-        <PurchaseOrder
-          pageControl={pageControl}
-          setPageControl={setPageControl}
-        />
+      {pageControl.draftOrder && (
+        <DraftOrder pageControl={pageControl} setPageControl={setPageControl} />
       )}
     </React.Fragment>
   );

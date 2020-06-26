@@ -67,7 +67,7 @@ export default function Manage(props) {
     props.setPageControl({
       manage: false,
       root: true,
-      purchaseOrder: false,
+      draftOrder: false,
     });
   };
 
