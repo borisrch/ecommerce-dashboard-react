@@ -202,7 +202,7 @@ export default function Orders(props) {
             justifyContent="flex-end"
             alignItems="center"
           >
-            <Tooltip title="Create Purchase Order" placement="top">
+            <Tooltip title="Create Draft Order" placement="top">
               <Button
                 className={classes.button}
                 color="primary"
