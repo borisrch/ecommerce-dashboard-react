@@ -1,13 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import faker from "faker";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import {
-  Typography,
-  Paper,
   IconButton,
   Button,
   Container,
