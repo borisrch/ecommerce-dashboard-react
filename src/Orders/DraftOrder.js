@@ -1,12 +1,23 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Container } from "@material-ui/core/";
+import { Container, Paper, Typography } from "@material-ui/core/";
 
 import PageTitle from "../Common/PageTitle";
 import WarningModal from "../Common/WarningModal";
+import TableBuilder from "../Common/TableBuilder";
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  root: {
+    boxShadow: "0 0 11px #eaf0f6",
+    borderRadius: "4px",
+    overflow: "hidden",
+    border: "1px solid #eaf0f6",
+  },
+  title: {
+    fontFamily: "ApercuMedium",
+  },
+}));
 
 export default function DraftOrder(props) {
   const classes = useStyles();
@@ -52,6 +63,11 @@ export default function DraftOrder(props) {
         quit={quit}
         details={modalDetails}
       />
+      <Typography variant="h6" className={classes.title}>
+        Order Details
+      </Typography>
+
+      <TableBuilder />
     </Container>
   );
 }
