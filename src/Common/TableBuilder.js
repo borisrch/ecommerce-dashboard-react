@@ -73,6 +73,7 @@ const TableBuilder = (props) => {
 
   const getHeader = () => {
     const keys = getKeys();
+
     return keys.map((key, index) => {
       return (
         <TableCell align="left" className={classes.headerCell} key={key}>
@@ -143,13 +144,6 @@ const TableBuilder = (props) => {
       </Table>
     </Paper>
   );
-};
-
-TableBuilder.defaultProps = {
-  data: [
-    { h1: "a1", h2: "a2", h3: "helloas" },
-    { h1: "b1", h2: "b2", h3: "helloas" },
-  ],
 };
 
 export default TableBuilder;
