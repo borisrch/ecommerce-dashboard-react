@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Container, Paper, Typography } from "@material-ui/core/";
+import { Container, Paper, Typography, Button } from "@material-ui/core/";
 
 import PageTitle from "../Common/PageTitle";
 import WarningModal from "../Common/WarningModal";
@@ -19,9 +21,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DraftOrder(props) {
+const DraftOrder = (props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+
+  const products = useSelector((state) => state.product.products);
 
   const handleOpen = () => {
     setOpen(true);
@@ -66,8 +70,28 @@ export default function DraftOrder(props) {
       <Typography variant="h6" className={classes.title}>
         Order Details
       </Typography>
-
-      <TableBuilder />
+      <TableBuilder data={products} />
     </Container>
   );
-}
+};
+
+DraftOrder.defaultProps = {
+  products: [
+    {
+      id: 1,
+      name: "name",
+      price: 1,
+      pictureUrl: "url",
+      description: "desc",
+      brand: "brand",
+      category: "cat",
+      colour: "colour",
+    },
+  ],
+};
+
+DraftOrder.propTypes = {
+  products: PropTypes.array.isRequired,
+};
+
+export default DraftOrder;

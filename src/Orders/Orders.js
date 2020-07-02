@@ -1,8 +1,9 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import faker from "faker";
-
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import { fetchProducts } from "../store/actions/products";
 
 import {
   IconButton,
@@ -147,7 +148,7 @@ const populate = (n) => {
 
 const ordersData = populate(8);
 
-export default function Orders(props) {
+const Orders = (props) => {
   const classes = useStyles();
 
   const [pageControl, setPageControl] = React.useState({
@@ -169,11 +170,11 @@ export default function Orders(props) {
   const [lastUpdatedTime, setLastUpdatedTime] = React.useState("N/A");
 
   React.useEffect(() => {
-    // props.dispatch(fetchProducts());
+    props.dispatch(fetchProducts());
     setLastUpdatedTime(`${new Date().toLocaleString()}`);
   }, []);
 
-  const OrdersMain = () => {
+  const OrdersMain = (props) => {
     return (
       <Container maxWidth="lg">
         <PageTitle title="Orders" />
@@ -229,4 +230,12 @@ export default function Orders(props) {
       )}
     </React.Fragment>
   );
+};
+
+function mapStateToProps(state) {
+  return {
+    products: state.product.products,
+  };
 }
+
+export default connect(mapStateToProps, null)(Orders);
